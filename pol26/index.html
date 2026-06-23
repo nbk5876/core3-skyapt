@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The 2026 Midterms — A Civic Field Guide</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;0,900;1,500&family=Lora:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#1c1a17 !important;
+    --paper:#f6f1e7 !important;
+    --paper-2:#efe7d7 !important;
+    --rule:#cbbfa8 !important;
+    --rep:#b23a32 !important;
+    --dem:#2e5a86 !important;
+    --tossup:#c9a13b !important;
+    --muted:#6b6253 !important;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{background:var(--paper) !important;color:var(--ink) !important;
+    font-family:'Lora',Georgia,serif;line-height:1.6;-webkit-font-smoothing:antialiased;}
+  .wrap{max-width:760px;margin:0 auto;padding:32px 20px 80px;}
+
+  .eyebrow{font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.22em;
+    text-transform:uppercase;color:var(--muted) !important;margin:0 0 16px;}
+  h1{font-family:'Playfair Display',serif;font-weight:900;
+    font-size:clamp(42px,10vw,76px);line-height:.96;letter-spacing:-.015em;
+    margin:0 0 18px;color:var(--ink) !important;}
+  h1 em{font-style:italic;font-weight:500;}
+  .standfirst{font-size:clamp(17px,2.5vw,20px);color:#3b362d !important;max-width:58ch;margin:0 0 10px;}
+  .dateline{font-family:'IBM Plex Mono',monospace;font-size:12.5px;color:var(--muted) !important;
+    margin-top:20px;padding-top:14px;border-top:1px solid var(--rule) !important;}
+
+  /* status strip */
+  .status{display:flex;flex-wrap:wrap;gap:0;margin:34px 0 0;
+    border:1px solid var(--ink) !important;}
+  .status div{flex:1 1 0;min-width:130px;padding:16px 18px;}
+  .status div + div{border-left:1px solid var(--rule) !important;}
+  .status .lab{font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.1em;
+    text-transform:uppercase;color:var(--muted) !important;margin:0 0 6px;}
+  .status .val{font-family:'Playfair Display',serif;font-size:21px;font-weight:700;margin:0;line-height:1.2;}
+  .status .val .r{color:var(--rep) !important;}
+  .status .val .d{color:var(--dem) !important;}
+  .status .sub{font-size:12.5px;color:var(--muted) !important;margin:4px 0 0;}
+
+  /* cards */
+  .cards{margin:38px 0 0;}
+  a.card{display:block;text-decoration:none;color:inherit;
+    border:1px solid var(--rule) !important;background:var(--paper-2) !important;
+    padding:24px 24px 22px;margin:0 0 18px;transition:border-color .15s, transform .15s;}
+  a.card:hover{border-color:var(--ink) !important;transform:translateY(-2px);}
+  a.card .num{font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.14em;
+    color:var(--tossup) !important;margin:0 0 8px;}
+  a.card h2{font-family:'Playfair Display',serif;font-weight:700;font-size:clamp(24px,5vw,32px);
+    margin:0 0 8px;color:var(--ink) !important;}
+  a.card p{font-size:15.5px;color:#3b362d !important;margin:0 0 12px;max-width:54ch;}
+  a.card .go{font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.04em;
+    color:var(--dem) !important;border-bottom:1px solid var(--dem) !important;padding-bottom:1px;}
+  a.card:hover .go{color:var(--ink) !important;border-color:var(--ink) !important;}
+
+  .secondary{border-style:dashed !important;background:transparent !important;}
+  .secondary h2{font-size:clamp(20px,4vw,24px);}
+
+  .howto{margin:40px 0 0;border-left:3px solid var(--tossup) !important;padding:2px 0 2px 16px;
+    font-size:15px;color:#3b362d !important;}
+  .howto strong{font-weight:500;}
+
+  footer{margin-top:48px;padding-top:18px;border-top:1px solid var(--rule) !important;
+    font-size:13px;color:var(--muted) !important;}
+  footer a{color:var(--dem) !important;}
+
+  @media (max-width:520px){
+    .status div{flex-basis:100%;}
+    .status div + div{border-left:none;border-top:1px solid var(--rule) !important;}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <p class="eyebrow">A Civic Field Guide · Fremont, Seattle</p>
+  <h1>The 2026<br><em>Midterms</em></h1>
+  <p class="standfirst">Republicans hold both chambers of Congress. This November decides whether that continues. Two interactive maps below show where things stand today and the handful of races that decide the next Congress, sworn in January 3, 2027.</p>
+  <p class="dateline">Nonpartisan · Built on consensus forecaster ratings · Updated June 2026</p>
+
+  <div class="status">
+    <div>
+      <p class="lab">U.S. Senate</p>
+      <p class="val"><span class="r">53 R</span> &ndash; <span class="d">47 D</span></p>
+      <p class="sub">Democrats need +4 to flip</p>
+    </div>
+    <div>
+      <p class="lab">U.S. House</p>
+      <p class="val"><span class="r">219 R</span> &ndash; <span class="d">212 D</span></p>
+      <p class="sub">Democrats need +3 to flip</p>
+    </div>
+    <div>
+      <p class="lab">In play</p>
+      <p class="val">49 + 8</p>
+      <p class="sub">competitive House &amp; Senate seats</p>
+    </div>
+  </div>
+
+  <div class="cards">
+    <a class="card" href="./midterm-balance.html">
+      <p class="num">01 · THE SENATE</p>
+      <h2>Balance of Power</h2>
+      <p>A tap-able map of all 50 states with a toggle between the Senate today and the 2027 consensus forecast, plus where the House majority stands. Start here for the big picture.</p>
+      <span class="go">Open the balance map &rarr;</span>
+    </a>
+
+    <a class="card" href="./house-cartogram.html">
+      <p class="num">02 · THE HOUSE</p>
+      <h2>Seat by Seat</h2>
+      <p>All 435 House seats as one square each. The few dozen that decide control are outlined and labeled — tap any one for the incumbent and how close it was in 2024.</p>
+      <span class="go">Open the House cartogram &rarr;</span>
+    </a>
+
+    <a class="card secondary" href="./support.html">
+      <p class="num">03 · FIELD NOTES</p>
+      <h2>The Competitive Races</h2>
+      <p>Background on every contested seat — where each district sits, who holds it, and the 2024 margin. Reached from the &ldquo;more info&rdquo; links on the maps, or browse it directly.</p>
+      <span class="go">Browse the race notes &rarr;</span>
+    </a>
+  </div>
+
+  <p class="howto"><strong>How to read these.</strong> &ldquo;Today&rdquo; reflects the current Congress; the &ldquo;2027 forecast&rdquo; is the consensus of three nonpartisan forecasters — Cook Political Report, Sabato&rsquo;s Crystal Ball, and Inside Elections — via 270toWin. These are forecasts, not results. Several state maps were redrawn for 2026 and some remain in litigation; those races are flagged in the notes.</p>
+
+  <footer>
+    <p>Built as an open, nonpartisan civic explainer — share and adapt freely. For voter registration and deadlines, check your Secretary of State or vote.org.</p>
+  </footer>
+
+</div>
+</body>
+</html>

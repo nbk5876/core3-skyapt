@@ -1,0 +1,1036 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Competitive Races — Field Notes</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;0,900;1,500&family=Lora:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#1c1a17 !important; --paper:#f6f1e7 !important; --paper-2:#efe7d7 !important;
+    --rule:#cbbfa8 !important; --rep:#b23a32 !important; --dem:#2e5a86 !important;
+    --open:#6a5a8c !important; --tossup:#c9a13b !important; --muted:#6b6253 !important;
+  }
+  *{box-sizing:border-box;} html,body{margin:0;padding:0;}
+  body{background:var(--paper) !important;color:var(--ink) !important;
+    font-family:'Lora',Georgia,serif;line-height:1.6;-webkit-font-smoothing:antialiased;}
+  .wrap{max-width:760px;margin:0 auto;padding:28px 20px 90px;}
+  .eyebrow{font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.22em;
+    text-transform:uppercase;color:var(--muted) !important;margin:0 0 14px;}
+  h1{font-family:'Playfair Display',serif;font-weight:900;font-size:clamp(34px,8vw,58px);
+    line-height:1.02;letter-spacing:-.01em;margin:0 0 16px;color:var(--ink) !important;}
+  h1 em{font-style:italic;font-weight:500;}
+  .standfirst{font-size:clamp(16px,2.3vw,18px);color:#3b362d !important;max-width:60ch;margin:0 0 8px;}
+  .dateline{font-family:'IBM Plex Mono',monospace;font-size:12.5px;color:var(--muted) !important;
+    margin-top:18px;padding-top:14px;border-top:1px solid var(--rule) !important;}
+
+  h2.section{font-family:'Playfair Display',serif;font-weight:700;font-size:clamp(24px,5vw,34px);
+    margin:50px 0 4px;border-bottom:2px solid var(--ink) !important;padding-bottom:8px;}
+  .index{font-family:'IBM Plex Mono',monospace;font-size:12px;line-height:2;color:var(--muted) !important;
+    margin:14px 0 0;}
+  .index a{color:var(--dem) !important;text-decoration:none;}
+  .index a:hover{color:var(--ink) !important;}
+
+  .card{border:1px solid var(--rule) !important;background:var(--paper-2) !important;
+    padding:20px 22px;margin:22px 0 0;scroll-margin-top:18px;}
+  .card:target{border-color:var(--ink) !important;box-shadow:0 0 0 2px var(--tossup) !important;}
+  .card-head{display:flex;align-items:baseline;gap:12px;margin-bottom:10px;}
+  .card-head h3{font-family:'Playfair Display',serif;font-weight:700;font-size:24px;margin:0;color:var(--ink) !important;}
+  .tag{font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;
+    color:var(--muted) !important;margin-left:auto;}
+  .meta{display:flex;flex-wrap:wrap;gap:10px 14px;align-items:center;margin:0 0 14px;}
+  .pill{display:inline-block;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.06em;
+    padding:2px 9px;border-radius:2px;color:#fff !important;}
+  .pill.rep{background:var(--rep) !important;} .pill.dem{background:var(--dem) !important;}
+  .pill.open{background:var(--open) !important;}
+  .rating{font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--ink) !important;}
+  dl{margin:0;display:grid;grid-template-columns:128px 1fr;gap:8px 14px;}
+  dt{font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;
+    color:var(--muted) !important;padding-top:2px;}
+  dd{margin:0;font-size:15px;color:#3b362d !important;}
+  dd.fill{color:var(--muted) !important;font-style:italic;}
+  dd.flag{color:var(--tossup) !important;font-size:13px;}
+  .back{margin:16px 0 0;}
+  .back a{font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:var(--dem) !important;text-decoration:none;}
+  .back a:hover{color:var(--ink) !important;}
+
+  footer{margin-top:60px;padding-top:18px;border-top:1px solid var(--rule) !important;
+    font-size:13px;color:var(--muted) !important;}
+  footer a{color:var(--dem) !important;}
+  @media (max-width:520px){
+    dl{grid-template-columns:1fr;gap:2px 0;}
+    dt{padding-top:10px;}
+    .card-head{flex-wrap:wrap;} .tag{margin-left:0;width:100%;}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <p class="eyebrow">A Civic Field Guide — Field Notes</p>
+  <h1>The Competitive <em>Races</em></h1>
+  <p class="standfirst">Background on each seat that could decide control of Congress in 2027. The Senate seats come first, then the House districts. Verified facts are filled in; bracketed lines are open for local detail.</p>
+  <p class="dateline">8 Senate · 49 House · Updated June 2026</p>
+
+  <h2 class="section">Senate</h2>
+  <p class="index"><a href="#mesen">Maine</a> · <a href="#ncsen">North Carolina</a> · <a href="#gasen">Georgia</a> · <a href="#ohsen">Ohio</a> · <a href="#iasen">Iowa</a> · <a href="#misen">Michigan</a> · <a href="#nesen">Nebraska</a> · <a href="#txsen">Texas</a></p>
+  <article class="card" id="mesen">
+    <div class="card-head">
+      <h3>Maine</h3>
+      <span class="tag">U.S. Senate</span>
+    </div>
+    <p class="meta">
+      <span class="pill rep">Currently Republican</span>
+      <span class="rating">2027 forecast: Toss-up</span>
+    </p>
+    <dl>
+      <dt>The race</dt><dd>Sen. Susan Collins (R)</dd>
+      <dt>Candidates</dt><dd class="fill">[ add / confirm candidate names ]</dd>
+      <dt>Why it matters</dt><dd>Democratic nominee Graham Platner. Only GOP-held seat in a state Harris won; the Democrats' top flip target.</dd>
+      <dt>Notes</dt><dd class="fill">[ add anything else here ]</dd>
+    </dl>
+    <p class="back"><a href="./midterm-balance.html#senate">&larr; Back to the Senate map</a></p>
+  </article>
+  <article class="card" id="ncsen">
+    <div class="card-head">
+      <h3>North Carolina</h3>
+      <span class="tag">U.S. Senate</span>
+    </div>
+    <p class="meta">
+      <span class="pill rep">Currently Republican</span>
+      <span class="rating">2027 forecast: Lean Democrat</span>
+    </p>
+    <dl>
+      <dt>The race</dt><dd>Open (Sen. Thom Tillis retiring)</dd>
+      <dt>Candidates</dt><dd class="fill">[ add / confirm candidate names ]</dd>
+      <dt>Why it matters</dt><dd>Former Gov. Roy Cooper (D) vs. former RNC chair Michael Whatley (R). Moved Toss-up → Lean D as Cooper led polling.</dd>
+      <dt>Notes</dt><dd class="fill">[ add anything else here ]</dd>
+    </dl>
+    <p class="back"><a href="./midterm-balance.html#senate">&larr; Back to the Senate map</a></p>
+  </article>
+  <article class="card" id="gasen">
+    <div class="card-head">
+      <h3>Georgia</h3>
+      <span class="tag">U.S. Senate</span>
+    </div>
+    <p class="meta">
+      <span class="pill dem">Currently Democratic</span>
+      <span class="rating">2027 forecast: Lean Democrat</span>
+    </p>
+    <dl>
+      <dt>The race</dt><dd>Sen. Jon Ossoff (D)</dd>
+      <dt>Candidates</dt><dd class="fill">[ add / confirm candidate names ]</dd>
+      <dt>Why it matters</dt><dd>Must-hold for Democrats. A crowded, fractious GOP primary and Ossoff's large fundraising edge moved this to Lean D.</dd>
+      <dt>Notes</dt><dd class="fill">[ add anything else here ]</dd>
+    </dl>
+    <p class="back"><a href="./midterm-balance.html#senate">&larr; Back to the Senate map</a></p>
+  </article>
+  <article class="card" id="ohsen">
+    <div class="card-head">
+      <h3>Ohio</h3>
+      <span class="tag">U.S. Senate</span>
+    </div>
+    <p class="meta">
+      <span class="pill rep">Currently Republican</span>
+      <span class="rating">2027 forecast: Toss-up</span>
+    </p>
+    <dl>
+      <dt>The race</dt><dd>Sen. Jon Husted (R, appointed)</dd>
+      <dt>Candidates</dt><dd class="fill">[ add / confirm candidate names ]</dd>
+      <dt>Why it matters</dt><dd>Special election for JD Vance's former seat. Former Sen. Sherrod Brown (D) is running; recent polling shows a statistical tie.</dd>
+      <dt>Notes</dt><dd class="fill">[ add anything else here ]</dd>
+    </dl>
+    <p class="back"><a href="./midterm-balance.html#senate">&larr; Back to the Senate map</a></p>
+  </article>
+  <article class="card" id="iasen">
+    <div class="card-head">
+      <h3>Iowa</h3>
+      <span class="tag">U.S. Senate</span>
+    </div>
+    <p class="meta">
+      <span class="pill rep">Currently Republican</span>
+      <span class="rating">2027 forecast: Lean Republican</span>
+    </p>
+    <dl>
+      <dt>The race</dt><dd>Open (Sen. Joni Ernst retiring)</dd>
+      <dt>Candidates</dt><dd class="fill">[ add / confirm candidate names ]</dd>
+      <dt>Why it matters</dt><dd>Shifted Likely → Lean Republican as the field firmed up.</dd>
+      <dt>Notes</dt><dd class="fill">[ add anything else here ]</dd>
+    </dl>
+    <p class="back"><a href="./midterm-balance.html#senate">&larr; Back to the Senate map</a></p>
+  </article>
+  <article class="card" id="misen">
+    <div class="card-head">
+      <h3>Michigan</h3>
+      <span class="tag">U.S. Senate</span>
+    </div>
+    <p class="meta">
+      <span class="pill dem">Currently Democratic</span>
+      <span class="rating">2027 forecast: Lean Democrat</span>
+    </p>
+    <dl>
+      <dt>The race</dt><dd>Open (Sen. Gary Peters retiring)</dd>
+      <dt>Candidates</dt><dd class="fill">[ add / confirm candidate names ]</dd>
+      <dt>Why it matters</dt><dd>Trump narrowly won the state in 2024; Democrats favored but not safe in an open seat.</dd>
+      <dt>Notes</dt><dd class="fill">[ add anything else here ]</dd>
+    </dl>
+    <p class="back"><a href="./midterm-balance.html#senate">&larr; Back to the Senate map</a></p>
+  </article>
+  <article class="card" id="nesen">
+    <div class="card-head">
+      <h3>Nebraska</h3>
+      <span class="tag">U.S. Senate</span>
+    </div>
+    <p class="meta">
+      <span class="pill rep">Currently Republican</span>
+      <span class="rating">2027 forecast: In play (Ind.)</span>
+    </p>
+    <dl>
+      <dt>The race</dt><dd>Sen. Pete Ricketts (R)</dd>
+      <dt>Candidates</dt><dd class="fill">[ add / confirm candidate names ]</dd>
+      <dt>Why it matters</dt><dd>Independent Dan Osborn is making this competitive in a reliably red state.</dd>
+      <dt>Notes</dt><dd class="fill">[ add anything else here ]</dd>
+    </dl>
+    <p class="back"><a href="./midterm-balance.html#senate">&larr; Back to the Senate map</a></p>
+  </article>
+  <article class="card" id="txsen">
+    <div class="card-head">
+      <h3>Texas</h3>
+      <span class="tag">U.S. Senate</span>
+    </div>
+    <p class="meta">
+      <span class="pill rep">Currently Republican</span>
+      <span class="rating">2027 forecast: Lean Republican</span>
+    </p>
+    <dl>
+      <dt>The race</dt><dd>Open (Sen. Cornyn lost primary)</dd>
+      <dt>Candidates</dt><dd class="fill">[ add / confirm candidate names ]</dd>
+      <dt>Why it matters</dt><dd>Ken Paxton (R) vs. Rep. James Talarico (D). Paxton's primary win gave Democrats a longer-shot opening.</dd>
+      <dt>Notes</dt><dd class="fill">[ add anything else here ]</dd>
+    </dl>
+    <p class="back"><a href="./midterm-balance.html#senate">&larr; Back to the Senate map</a></p>
+  </article>
+
+  <h2 class="section">House</h2>
+  <p class="index"><a href="#akal">AK-AL</a> · <a href="#al02">AL-02</a> · <a href="#az01">AZ-01</a> · <a href="#az02">AZ-02</a> · <a href="#az06">AZ-06</a> · <a href="#ca13">CA-13</a> · <a href="#ca21">CA-21</a> · <a href="#ca22">CA-22</a> · <a href="#ca41">CA-41</a> · <a href="#ca45">CA-45</a> · <a href="#co08">CO-08</a> · <a href="#fl09">FL-09</a> · <a href="#fl13">FL-13</a> · <a href="#fl27">FL-27</a> · <a href="#ia01">IA-01</a> · <a href="#ia03">IA-03</a> · <a href="#me02">ME-02</a> · <a href="#mi07">MI-07</a> · <a href="#mi08">MI-08</a> · <a href="#mi10">MI-10</a> · <a href="#nc01">NC-01</a> · <a href="#ne02">NE-02</a> · <a href="#nj07">NJ-07</a> · <a href="#nm02">NM-02</a> · <a href="#nv01">NV-01</a> · <a href="#nv03">NV-03</a> · <a href="#nv04">NV-04</a> · <a href="#ny01">NY-01</a> · <a href="#ny03">NY-03</a> · <a href="#ny04">NY-04</a> · <a href="#ny17">NY-17</a> · <a href="#ny19">NY-19</a> · <a href="#oh01">OH-01</a> · <a href="#oh09">OH-09</a> · <a href="#oh13">OH-13</a> · <a href="#or05">OR-05</a> · <a href="#pa01">PA-01</a> · <a href="#pa07">PA-07</a> · <a href="#pa08">PA-08</a> · <a href="#pa10">PA-10</a> · <a href="#tx15">TX-15</a> · <a href="#tx23">TX-23</a> · <a href="#tx28">TX-28</a> · <a href="#tx34">TX-34</a> · <a href="#va02">VA-02</a> · <a href="#va07">VA-07</a> · <a href="#wa03">WA-03</a> · <a href="#wi01">WI-01</a> · <a href="#wi03">WI-03</a></p>
+  <article class="card" id="akal">
+    <div class="card-head">
+      <h3>AK-AL</h3>
+      <span class="tag">U.S. House</span>
+    </div>
+    <p class="meta">
+      <span class="pill rep">Currently Republican</span>
+      <span class="rating">2024 margin: 2.4%</span>
+    </p>
+    <dl>
+      <dt>Location</dt><dd>Statewide — Alaska's single at-large district (ranked-choice voting)</dd>
+      <dt>Incumbent</dt><dd>Rep. Begich (R)</dd>
+      <dt>Candidates</dt><dd class="fill">[ add / confirm 2026 candidate names ]</dd>
+    </dl>
+    <p class="back"><a href="./house-cartogram.html">&larr; Back to the House map</a></p>
+  </article>
+  <article class="card" id="al02">
+    <div class="card-head">
+      <h3>AL-02</h3>
+      <span class="tag">U.S. House</span>
+    </div>
+    <p class="meta">
+      <span class="pill dem">Currently Democratic</span>
+      <span class="rating">2024 margin: 9.2%</span>
+    </p>
+    <dl>
+      <dt>Location</dt><dd>Southern Alabama — Montgomery, parts of Mobile, and Tuskegee (redrawn after 2023 VRA ruling)</dd>
+      <dt>Incumbent</dt><dd>Rep. Figures (D)</dd>
+      <dt>Candidates</dt><dd class="fill">[ add / confirm 2026 candidate names ]</dd>
+    </dl>
+    <p class="back"><a href="./house-cartogram.html">&larr; Back to the House map</a></p>
+  </article>
+  <article class="card" id="az01">
+    <div class="card-head">
+      <h3>AZ-01</h3>
+      <span class="tag">U.S. House</span>
+    </div>
+    <p class="meta">
+      <span class="pill rep">Currently Republican</span>
+      <span class="rating">2024 margin: 3.8%</span>
+    </p>
+    <dl>
+      <dt>Location</dt><dd>Northeastern Phoenix suburbs, including Scottsdale</dd>
+      <dt>Incumbent</dt><dd>Rep. Schweikert (R)</dd>
+      <dt>Candidates</dt><dd class="fill">[ add / confirm 2026 candidate names ]</dd>
+      <dt>Note</dt><dd>Retiring to run for governor</dd>
+    </dl>
+    <p class="back"><a href="./house-cartogram.html">&larr; Back to the House map</a></p>
+  </article>
+  <article class="card" id="az02">
+    <div class="card-head">
+      <h3>AZ-02</h3>
+      <span class="tag">U.S. House</span>
+    </div>
+    <p class="meta">
+      <span class="pill rep">Currently Republican</span>
+      <span class="rating">2024 margin: 9.0%</span>
+    </p>
+    <dl>
+      <dt>Location</dt><dd>Northeastern Arizona — Prescott, Flagstaff, and much of the Navajo Nation</dd>
+      <dt>Incumbent</dt><dd>Rep. Crane (R)</dd>
+      <dt>Candidates</dt><dd class="fill">[ add / confirm 2026 candidate names ]</dd>
+    </dl>
+    <p class="back"><a href="./house-cartogram.html">&larr; Back to the House map</a></p>
+  </article>
+  <article class="card" id="az06">
+    <div class="card-head">
+      <h3>AZ-06</h3>
+      <span class="tag">U.S. House</span>
+    </div>
+    <p class="meta">
+      <span class="pill rep">Currently Republican</span>
+      <span class="rating">2024 margin: 2.5%</span>
+    </p>
+    <dl>
+      <dt>Location</dt><dd>Southeastern Arizona — the Tucson area</dd>
+      <dt>Incumbent</dt><dd>Rep. Ciscomani (R)</dd>
+      <dt>Candidates</dt><dd class="fill">[ add / confirm 2026 candidate names ]</dd>
+    </dl>
+    <p class="back"><a href="./house-cartogram.html">&larr; Back to the House map</a></p>
+  </article>
+  <article class="card" id="ca13">
+    <div class="card-head">
+      <h3>CA-13</h3>
+      <span class="tag">U.S. House</span>
+    </div>
+    <p class="meta">
+      <span class="pill dem">Currently Democratic</span>
+      <span class="rating">2024 margin: 0.1%</span>
+    </p>
+    <dl>
+      <dt>Location</dt><dd>Central Valley (San Joaquin / Merced area) — boundaries redrawn under Prop 50 for 2026</dd>
+      <dt>Incumbent</dt><dd>Rep. Gray (D)</dd>
+      <dt>Candidates</dt><dd class="fill">[ add / confirm 2026 candidate names ]</dd>
+      <dt>Note</dt><dd>Tightest House margin in the country in 2024</dd>
+      <dt>Map note</dt><dd class="flag">District lines changed for 2026 — boundaries may differ from prior maps.</dd>
+    </dl>
+    <p class="back"><a href="./house-cartogram.html">&larr; Back to the House map</a></p>
+  </article>
+  <article class="card" id="ca21">
+    <div class="card-head">
+      <h3>CA-21</h3>
+      <span class="tag">U.S. House</span>
+    </div>
+    <p class="meta">
+      <span class="pill dem">Currently Democratic</span>
+      <span class="rating">2024 margin: 5.1%</span>
+    </p>
+    <dl>
+      <dt>Location</dt><dd>Central Valley — Fresno-area district; boundaries redrawn under Prop 50 for 2026</dd>
+      <dt>Incumbent</dt><dd>Rep. Costa (D)</dd>
+      <dt>Candidates</dt><dd class="fill">[ add / confirm 2026 candidate names ]</dd>
+      <dt>Map note</dt><dd class="flag">District lines changed for 2026 — boundaries may differ from prior maps.</dd>
+    </dl>
+    <p class="back"><a href="./house-cartogram.html">&larr; Back to the House map</a></p>
+  </article>
+  <article class="card" id="ca22">
+    <div class="card-head">
+      <h3>CA-22</h3>
+      <span class="tag">U.S. House</span>
+    </div>
+    <p class="meta">
+      <span class="pill rep">Currently Republican</span>
+      <span class="rating">2024 margin: 6.8%</span>
+    </p>
+    <dl>
+      <dt>Location</dt><dd>Southern Central Valley — Kings County and parts of Kern/Tulare; redrawn under Prop 50 for 2026</dd>
+      <dt>Incumbent</dt><dd>Rep. Valadao (R)</dd>
+      <dt>Candidates</dt><dd class="fill">[ add / confirm 2026 candidate names ]</dd>
+      <dt>Map note</dt><dd class="flag">District lines changed for 2026 — boundaries may differ from prior maps.</dd>
+    </dl>
+    <p class="back"><a href="./house-cartogram.html">&larr; Back to the House map</a></p>
+  </article>
+  <article class="card" id="ca41">
+    <div class="card-head">
+      <h3>CA-41</h3>
+      <span class="tag">U.S. House</span>
+    </div>
+    <p class="meta">
+      <span class="pill rep">Currently Republican</span>
+      <span class="rating">2024 margin: 3.4%</span>
+    </p>
+    <dl>
+      <dt>Location</dt><dd>Riverside County — redrawn under Prop 50 for 2026</dd>
+      <dt>Incumbent</dt><dd>Rep. Calvert (R)</dd>
+      <dt>Candidates</dt><dd class="fill">[ add / confirm 2026 candidate names ]</dd>
+      <dt>Map note</dt><dd class="flag">District lines changed for 2026 — boundaries may differ from prior maps.</dd>
+    </dl>
+    <p class="back"><a href="./house-cartogram.html">&larr; Back to the House map</a></p>
+  </article>
+  <article class="card" id="ca45">
+    <div class="card-head">
+      <h3>CA-45</h3>
+      <span class="tag">U.S. House</span>
+    </div>
+    <p class="meta">
+      <span class="pill dem">Currently Democratic</span>
+      <span class="rating">2024 margin: 0.2%</span>
+    </p>
+    <dl>
+      <dt>Location</dt><dd>Orange County area — redrawn under Prop 50 for 2026</dd>
+      <dt>Incumbent</dt><dd>Rep. Tran (D)</dd>
+      <dt>Candidates</dt><dd class="fill">[ add / confirm 2026 candidate names ]</dd>
+      <dt>Map note</dt><dd class="flag">District lines changed for 2026 — boundaries may differ from prior maps.</dd>
+    </dl>
+    <p class="back"><a href="./house-cartogram.html">&larr; Back to the House map</a></p>
+  </article>
+  <article class="card" id="co08">
+    <div class="card-head">
+      <h3>CO-08</h3>
+      <span class="tag">U.S. House</span>
+    </div>
+    <p class="meta">
+      <span class="pill rep">Currently Republican</span>
+      <span class="rating">2024 margin: 0.7%</span>
+    </p>
+    <dl>
+      <dt>Location</dt><dd>North Denver suburbs — Adams and Weld counties, including Thornton and Greeley</dd>
+      <dt>Incumbent</dt><dd>Rep. Evans (R)</dd>
+      <dt>Candidates</dt><dd class="fill">[ add / confirm 2026 candidate names ]</dd>
+    </dl>
+    <p class="back"><a href="./house-cartogram.html">&larr; Back to the House map</a></p>
+  </article>
+  <article class="card" id="fl09">
+    <div class="card-head">
+      <h3>FL-09</h3>
+      <span class="tag">U.S. House</span>
+    </div>
+    <p class="meta">
+      <span class="pill dem">Currently Democratic</span>
+      <span class="rating">2024 margin: 12.6%</span>
+    </p>
+    <dl>
+      <dt>Location</dt><dd>Orlando suburbs — Osceola County, Kissimmee, St. Cloud; boundaries redrawn for 2026</dd>
+      <dt>Incumbent</dt><dd>Rep. Soto (D)</dd>
+      <dt>Candidates</dt><dd class="fill">[ add / confirm 2026 candidate names ]</dd>
+      <dt>Map note</dt><dd class="flag">District lines changed for 2026 — boundaries may differ from prior maps.</dd>
+    </dl>
+    <p class="back"><a href="./house-cartogram.html">&larr; Back to the House map</a></p>
+  </article>
+  <article class="card" id="fl13">
+    <div class="card-head">
+      <h3>FL-13</h3>
+      <span class="tag">U.S. House</span>
+    </div>
+    <p class="meta">
+      <span class="pill rep">Currently Republican</span>
+      <span class="rating">2024 margin: 9.6%</span>
+    </p>
+    <dl>
+      <dt>Location</dt><dd>Pinellas County — the St. Petersburg area; boundaries redrawn for 2026</dd>
+      <dt>Incumbent</dt><dd>Rep. Luna (R)</dd>
+      <dt>Candidates</dt><dd class="fill">[ add / confirm 2026 candidate names ]</dd>
+      <dt>Map note</dt><dd class="flag">District lines changed for 2026 — boundaries may differ from prior maps.</dd>
+    </dl>
+    <p class="back"><a href="./house-cartogram.html">&larr; Back to the House map</a></p>
+  </article>
+  <article class="card" id="fl27">
+    <div class="card-head">
+      <h3>FL-27</h3>
+      <span class="tag">U.S. House</span>
+    </div>
+    <p class="meta">
+      <span class="pill rep">Currently Republican</span>
+      <span class="rating">2024 margin: 20.8%</span>
+    </p>
+    <dl>
+      <dt>Location</dt><dd>Miami-Dade County — the Miami area; boundaries redrawn for 2026</dd>
+      <dt>Incumbent</dt><dd>Rep. Salazar (R)</dd>
+      <dt>Candidates</dt><dd class="fill">[ add / confirm 2026 candidate names ]</dd>
+      <dt>Map note</dt><dd class="flag">District lines changed for 2026 — boundaries may differ from prior maps.</dd>
+    </dl>
+    <p class="back"><a href="./house-cartogram.html">&larr; Back to the House map</a></p>
+  </article>
+  <article class="card" id="ia01">
+    <div class="card-head">
+      <h3>IA-01</h3>
+      <span class="tag">U.S. House</span>
+    </div>
+    <p class="meta">
+      <span class="pill rep">Currently Republican</span>
+      <span class="rating">2024 margin: 0.2%</span>
+    </p>
+    <dl>
+      <dt>Location</dt><dd>Southeastern Iowa — Davenport and Iowa City</dd>
+      <dt>Incumbent</dt><dd>Rep. Miller-Meeks (R)</dd>
+      <dt>Candidates</dt><dd class="fill">[ add / confirm 2026 candidate names ]</dd>
+    </dl>
+    <p class="back"><a href="./house-cartogram.html">&larr; Back to the House map</a></p>
+  </article>
+  <article class="card" id="ia03">
+    <div class="card-head">
+      <h3>IA-03</h3>
+      <span class="tag">U.S. House</span>
+    </div>
+    <p class="meta">
+      <span class="pill rep">Currently Republican</span>
+      <span class="rating">2024 margin: 3.8%</span>
+    </p>
+    <dl>
+      <dt>Location</dt><dd>South-central Iowa — the Des Moines area</dd>
+      <dt>Incumbent</dt><dd>Rep. Nunn (R)</dd>
+      <dt>Candidates</dt><dd class="fill">[ add / confirm 2026 candidate names ]</dd>
+    </dl>
+    <p class="back"><a href="./house-cartogram.html">&larr; Back to the House map</a></p>
+  </article>
+  <article class="card" id="me02">
+    <div class="card-head">
+      <h3>ME-02</h3>
+      <span class="tag">U.S. House</span>
+    </div>
+    <p class="meta">
+      <span class="pill dem">Currently Democratic</span>
+      <span class="rating">2024 margin: 0.7%</span>
+    </p>
+    <dl>
+      <dt>Location</dt><dd>Northern and rural Maine — everything outside the southern coast (Bangor, Lewiston)</dd>
+      <dt>Incumbent</dt><dd>Rep. Golden (D)</dd>
+      <dt>Candidates</dt><dd class="fill">[ add / confirm 2026 candidate names ]</dd>
+      <dt>Note</dt><dd>Open — incumbent not seeking re-election</dd>
+    </dl>
+    <p class="back"><a href="./house-cartogram.html">&larr; Back to the House map</a></p>
+  </article>
+  <article class="card" id="mi07">
+    <div class="card-head">
+      <h3>MI-07</h3>
+      <span class="tag">U.S. House</span>
+    </div>
+    <p class="meta">
+      <span class="pill rep">Currently Republican</span>
+      <span class="rating">2024 margin: 3.7%</span>
+    </p>
+    <dl>
+      <dt>Location</dt><dd>Lansing–East Lansing area, plus Livingston County and part of Oakland County</dd>
+      <dt>Incumbent</dt><dd>Rep. Barrett (R)</dd>
+      <dt>Candidates</dt><dd class="fill">[ add / confirm 2026 candidate names ]</dd>
+    </dl>
+    <p class="back"><a href="./house-cartogram.html">&larr; Back to the House map</a></p>
+  </article>
+  <article class="card" id="mi08">
+    <div class="card-head">
+      <h3>MI-08</h3>
+      <span class="tag">U.S. House</span>
+    </div>
+    <p class="meta">
+      <span class="pill dem">Currently Democratic</span>
+      <span class="rating">2024 margin: 6.6%</span>
+    </p>
+    <dl>
+      <dt>Location</dt><dd>The Saginaw Bay region — Flint, Saginaw, Bay City, and Midland</dd>
+      <dt>Incumbent</dt><dd>Rep. McDonald Rivet (D)</dd>
+      <dt>Candidates</dt><dd class="fill">[ add / confirm 2026 candidate names ]</dd>
+    </dl>
+    <p class="back"><a href="./house-cartogram.html">&larr; Back to the House map</a></p>
+  </article>
+  <article class="card" id="mi10">
+    <div class="card-head">
+      <h3>MI-10</h3>
+      <span class="tag">U.S. House</span>
+    </div>
+    <p class="meta">
+      <span class="pill rep">Currently Republican</span>
+      <span class="rating">2024 margin: 6.1%</span>
+    </p>
+    <dl>
+      <dt>Location</dt><dd>Southeastern Michigan's Macomb County — Warren and Sterling Heights, plus part of eastern Oakland County</dd>
+      <dt>Incumbent</dt><dd>Rep. James (R)</dd>
+      <dt>Candidates</dt><dd class="fill">[ add / confirm 2026 candidate names ]</dd>
+      <dt>Note</dt><dd>Open — running for governor</dd>
+    </dl>
+    <p class="back"><a href="./house-cartogram.html">&larr; Back to the House map</a></p>
+  </article>
+  <article class="card" id="nc01">
+    <div class="card-head">
+      <h3>NC-01</h3>
+      <span class="tag">U.S. House</span>
+    </div>
+    <p class="meta">
+      <span class="pill dem">Currently Democratic</span>
+      <span class="rating">2024 margin: 1.7%</span>
+    </p>
+    <dl>
+      <dt>Location</dt><dd>Northeastern North Carolina — rural counties plus part of the Research Triangle; boundaries shifted ~8 pts rightward for 2026</dd>
+      <dt>Incumbent</dt><dd>Rep. Davis (D)</dd>
+      <dt>Candidates</dt><dd class="fill">[ add / confirm 2026 candidate names ]</dd>
+      <dt>Map note</dt><dd class="flag">District lines changed for 2026 — boundaries may differ from prior maps.</dd>
+    </dl>
+    <p class="back"><a href="./house-cartogram.html">&larr; Back to the House map</a></p>
+  </article>
+  <article class="card" id="ne02">
+    <div class="card-head">
+      <h3>NE-02</h3>
+      <span class="tag">U.S. House</span>
+    </div>
+    <p class="meta">
+      <span class="pill rep">Currently Republican</span>
+      <span class="rating">2024 margin: 1.9%</span>
+    </p>
+    <dl>
+      <dt>Location</dt><dd>The Omaha area — all of Douglas and Saunders counties and western Sarpy County</dd>
+      <dt>Incumbent</dt><dd>Rep. Bacon (R)</dd>
+      <dt>Candidates</dt><dd class="fill">[ add / confirm 2026 candidate names ]</dd>
+      <dt>Note</dt><dd>Open — incumbent not running</dd>
+    </dl>
+    <p class="back"><a href="./house-cartogram.html">&larr; Back to the House map</a></p>
+  </article>
+  <article class="card" id="nj07">
+    <div class="card-head">
+      <h3>NJ-07</h3>
+      <span class="tag">U.S. House</span>
+    </div>
+    <p class="meta">
+      <span class="pill rep">Currently Republican</span>
+      <span class="rating">2024 margin: 5.4%</span>
+    </p>
+    <dl>
+      <dt>Location</dt><dd>North-central New Jersey — suburban/exurban areas across Hunterdon, Somerset, Union, Warren, and Morris counties</dd>
+      <dt>Incumbent</dt><dd>Rep. Kean (R)</dd>
+      <dt>Candidates</dt><dd class="fill">[ add / confirm 2026 candidate names ]</dd>
+    </dl>
+    <p class="back"><a href="./house-cartogram.html">&larr; Back to the House map</a></p>
+  </article>
+  <article class="card" id="nm02">
+    <div class="card-head">
+      <h3>NM-02</h3>
+      <span class="tag">U.S. House</span>
+    </div>
+    <p class="meta">
+      <span class="pill dem">Currently Democratic</span>
+      <span class="rating">2024 margin: 4.2%</span>
+    </p>
+    <dl>
+      <dt>Location</dt><dd>Southern New Mexico — Las Cruces, the southern half of the state, and part of Albuquerque</dd>
+      <dt>Incumbent</dt><dd>Rep. Vasquez (D)</dd>
+      <dt>Candidates</dt><dd class="fill">[ add / confirm 2026 candidate names ]</dd>
+    </dl>
+    <p class="back"><a href="./house-cartogram.html">&larr; Back to the House map</a></p>
+  </article>
+  <article class="card" id="nv01">
+    <div class="card-head">
+      <h3>NV-01</h3>
+      <span class="tag">U.S. House</span>
+    </div>
+    <p class="meta">
+      <span class="pill dem">Currently Democratic</span>
+      <span class="rating">2024 margin: 7.5%</span>
+    </p>
+    <dl>
+      <dt>Location</dt><dd>Inner Las Vegas and southeastern Clark County — Paradise, Henderson, Boulder City</dd>
+      <dt>Incumbent</dt><dd>Rep. Titus (D)</dd>
+      <dt>Candidates</dt><dd class="fill">[ add / confirm 2026 candidate names ]</dd>
+    </dl>
+    <p class="back"><a href="./house-cartogram.html">&larr; Back to the House map</a></p>
+  </article>
+  <article class="card" id="nv03">
+    <div class="card-head">
+      <h3>NV-03</h3>
+      <span class="tag">U.S. House</span>
+    </div>
+    <p class="meta">
+      <span class="pill dem">Currently Democratic</span>
+      <span class="rating">2024 margin: 2.7%</span>
+    </p>
+    <dl>
+      <dt>Location</dt><dd>Western Las Vegas suburbs — Spring Valley, Summerlin South, Sandy Valley</dd>
+      <dt>Incumbent</dt><dd>Rep. Lee (D)</dd>
+      <dt>Candidates</dt><dd class="fill">[ add / confirm 2026 candidate names ]</dd>
+    </dl>
+    <p class="back"><a href="./house-cartogram.html">&larr; Back to the House map</a></p>
+  </article>
+  <article class="card" id="nv04">
+    <div class="card-head">
+      <h3>NV-04</h3>
+      <span class="tag">U.S. House</span>
+    </div>
+    <p class="meta">
+      <span class="pill dem">Currently Democratic</span>
+      <span class="rating">2024 margin: 8.1%</span>
+    </p>
+    <dl>
+      <dt>Location</dt><dd>Northern Las Vegas and the Strip, plus rural central Nevada</dd>
+      <dt>Incumbent</dt><dd>Rep. Horsford (D)</dd>
+      <dt>Candidates</dt><dd class="fill">[ add / confirm 2026 candidate names ]</dd>
+    </dl>
+    <p class="back"><a href="./house-cartogram.html">&larr; Back to the House map</a></p>
+  </article>
+  <article class="card" id="ny01">
+    <div class="card-head">
+      <h3>NY-01</h3>
+      <span class="tag">U.S. House</span>
+    </div>
+    <p class="meta">
+      <span class="pill rep">Currently Republican</span>
+      <span class="rating">2024 margin: 10.4%</span>
+    </p>
+    <dl>
+      <dt>Location</dt><dd>Eastern Long Island — central and eastern Suffolk County</dd>
+      <dt>Incumbent</dt><dd>Rep. LaLota (R)</dd>
+      <dt>Candidates</dt><dd class="fill">[ add / confirm 2026 candidate names ]</dd>
+    </dl>
+    <p class="back"><a href="./house-cartogram.html">&larr; Back to the House map</a></p>
+  </article>
+  <article class="card" id="ny03">
+    <div class="card-head">
+      <h3>NY-03</h3>
+      <span class="tag">U.S. House</span>
+    </div>
+    <p class="meta">
+      <span class="pill dem">Currently Democratic</span>
+      <span class="rating">2024 margin: 3.6%</span>
+    </p>
+    <dl>
+      <dt>Location</dt><dd>North Shore of Nassau County and northeast Queens — Glen Cove, North Hempstead, parts of Oyster Bay, Whitestone, Little Neck, Douglaston</dd>
+      <dt>Incumbent</dt><dd>Rep. Suozzi (D)</dd>
+      <dt>Candidates</dt><dd class="fill">[ add / confirm 2026 candidate names ]</dd>
+    </dl>
+    <p class="back"><a href="./house-cartogram.html">&larr; Back to the House map</a></p>
+  </article>
+  <article class="card" id="ny04">
+    <div class="card-head">
+      <h3>NY-04</h3>
+      <span class="tag">U.S. House</span>
+    </div>
+    <p class="meta">
+      <span class="pill dem">Currently Democratic</span>
+      <span class="rating">2024 margin: 2.3%</span>
+    </p>
+    <dl>
+      <dt>Location</dt><dd>South Shore of Nassau County — entirely within the town of Hempstead</dd>
+      <dt>Incumbent</dt><dd>Rep. Gillen (D)</dd>
+      <dt>Candidates</dt><dd class="fill">[ add / confirm 2026 candidate names ]</dd>
+    </dl>
+    <p class="back"><a href="./house-cartogram.html">&larr; Back to the House map</a></p>
+  </article>
+  <article class="card" id="ny17">
+    <div class="card-head">
+      <h3>NY-17</h3>
+      <span class="tag">U.S. House</span>
+    </div>
+    <p class="meta">
+      <span class="pill rep">Currently Republican</span>
+      <span class="rating">2024 margin: 6.3%</span>
+    </p>
+    <dl>
+      <dt>Location</dt><dd>Lower Hudson Valley — Rockland, Putnam, and parts of Westchester and Dutchess counties</dd>
+      <dt>Incumbent</dt><dd>Rep. Lawler (R)</dd>
+      <dt>Candidates</dt><dd class="fill">[ add / confirm 2026 candidate names ]</dd>
+      <dt>Note</dt><dd>Cook’s only true NY toss-up; Harris won the seat</dd>
+    </dl>
+    <p class="back"><a href="./house-cartogram.html">&larr; Back to the House map</a></p>
+  </article>
+  <article class="card" id="ny19">
+    <div class="card-head">
+      <h3>NY-19</h3>
+      <span class="tag">U.S. House</span>
+    </div>
+    <p class="meta">
+      <span class="pill dem">Currently Democratic</span>
+      <span class="rating">2024 margin: 2.2%</span>
+    </p>
+    <dl>
+      <dt>Location</dt><dd>Upper Hudson Valley across the Catskills to the Southern Tier and Finger Lakes — incl. Binghamton, Ithaca, Oneonta</dd>
+      <dt>Incumbent</dt><dd>Rep. Riley (D)</dd>
+      <dt>Candidates</dt><dd class="fill">[ add / confirm 2026 candidate names ]</dd>
+    </dl>
+    <p class="back"><a href="./house-cartogram.html">&larr; Back to the House map</a></p>
+  </article>
+  <article class="card" id="oh01">
+    <div class="card-head">
+      <h3>OH-01</h3>
+      <span class="tag">U.S. House</span>
+    </div>
+    <p class="meta">
+      <span class="pill dem">Currently Democratic</span>
+      <span class="rating">2024 margin: 9.2%</span>
+    </p>
+    <dl>
+      <dt>Location</dt><dd>Southwestern Ohio — Cincinnati and parts of Hamilton/Warren counties; redrawn for 2026</dd>
+      <dt>Incumbent</dt><dd>Rep. Landsman (D)</dd>
+      <dt>Candidates</dt><dd class="fill">[ add / confirm 2026 candidate names ]</dd>
+      <dt>Map note</dt><dd class="flag">District lines changed for 2026 — boundaries may differ from prior maps.</dd>
+    </dl>
+    <p class="back"><a href="./house-cartogram.html">&larr; Back to the House map</a></p>
+  </article>
+  <article class="card" id="oh09">
+    <div class="card-head">
+      <h3>OH-09</h3>
+      <span class="tag">U.S. House</span>
+    </div>
+    <p class="meta">
+      <span class="pill dem">Currently Democratic</span>
+      <span class="rating">2024 margin: 0.6%</span>
+    </p>
+    <dl>
+      <dt>Location</dt><dd>Northern Ohio along Lake Erie — Toledo eastward; redrawn for 2026</dd>
+      <dt>Incumbent</dt><dd>Rep. Kaptur (D)</dd>
+      <dt>Candidates</dt><dd class="fill">[ add / confirm 2026 candidate names ]</dd>
+      <dt>Note</dt><dd>Longtime incumbent in a redrawn seat</dd>
+      <dt>Map note</dt><dd class="flag">District lines changed for 2026 — boundaries may differ from prior maps.</dd>
+    </dl>
+    <p class="back"><a href="./house-cartogram.html">&larr; Back to the House map</a></p>
+  </article>
+  <article class="card" id="oh13">
+    <div class="card-head">
+      <h3>OH-13</h3>
+      <span class="tag">U.S. House</span>
+    </div>
+    <p class="meta">
+      <span class="pill dem">Currently Democratic</span>
+      <span class="rating">2024 margin: 2.2%</span>
+    </p>
+    <dl>
+      <dt>Location</dt><dd>Northeastern Ohio — the Akron area; redrawn for 2026</dd>
+      <dt>Incumbent</dt><dd>Rep. Sykes (D)</dd>
+      <dt>Candidates</dt><dd class="fill">[ add / confirm 2026 candidate names ]</dd>
+      <dt>Map note</dt><dd class="flag">District lines changed for 2026 — boundaries may differ from prior maps.</dd>
+    </dl>
+    <p class="back"><a href="./house-cartogram.html">&larr; Back to the House map</a></p>
+  </article>
+  <article class="card" id="or05">
+    <div class="card-head">
+      <h3>OR-05</h3>
+      <span class="tag">U.S. House</span>
+    </div>
+    <p class="meta">
+      <span class="pill dem">Currently Democratic</span>
+      <span class="rating">2024 margin: 2.7%</span>
+    </p>
+    <dl>
+      <dt>Location</dt><dd>From southeastern Portland suburbs across the Willamette Valley and Cascades to Bend</dd>
+      <dt>Incumbent</dt><dd>Rep. Bynum (D)</dd>
+      <dt>Candidates</dt><dd class="fill">[ add / confirm 2026 candidate names ]</dd>
+    </dl>
+    <p class="back"><a href="./house-cartogram.html">&larr; Back to the House map</a></p>
+  </article>
+  <article class="card" id="pa01">
+    <div class="card-head">
+      <h3>PA-01</h3>
+      <span class="tag">U.S. House</span>
+    </div>
+    <p class="meta">
+      <span class="pill rep">Currently Republican</span>
+      <span class="rating">2024 margin: 12.8%</span>
+    </p>
+    <dl>
+      <dt>Location</dt><dd>Northern suburbs of Philadelphia — all of Bucks County and parts of Montgomery County</dd>
+      <dt>Incumbent</dt><dd>Rep. Fitzpatrick (R)</dd>
+      <dt>Candidates</dt><dd class="fill">[ add / confirm 2026 candidate names ]</dd>
+      <dt>Note</dt><dd>GOP-held seat Harris carried</dd>
+    </dl>
+    <p class="back"><a href="./house-cartogram.html">&larr; Back to the House map</a></p>
+  </article>
+  <article class="card" id="pa07">
+    <div class="card-head">
+      <h3>PA-07</h3>
+      <span class="tag">U.S. House</span>
+    </div>
+    <p class="meta">
+      <span class="pill rep">Currently Republican</span>
+      <span class="rating">2024 margin: 1.0%</span>
+    </p>
+    <dl>
+      <dt>Location</dt><dd>The Lehigh Valley — Lehigh, Northampton, and Carbon counties</dd>
+      <dt>Incumbent</dt><dd>Rep. Mackenzie (R)</dd>
+      <dt>Candidates</dt><dd class="fill">[ add / confirm 2026 candidate names ]</dd>
+    </dl>
+    <p class="back"><a href="./house-cartogram.html">&larr; Back to the House map</a></p>
+  </article>
+  <article class="card" id="pa08">
+    <div class="card-head">
+      <h3>PA-08</h3>
+      <span class="tag">U.S. House</span>
+    </div>
+    <p class="meta">
+      <span class="pill rep">Currently Republican</span>
+      <span class="rating">2024 margin: 1.6%</span>
+    </p>
+    <dl>
+      <dt>Location</dt><dd>Northeastern Pennsylvania — the Scranton–Wilkes-Barre area</dd>
+      <dt>Incumbent</dt><dd>Rep. Bresnahan (R)</dd>
+      <dt>Candidates</dt><dd class="fill">[ add / confirm 2026 candidate names ]</dd>
+      <dt>Note</dt><dd>Recently moved to Toss-up</dd>
+    </dl>
+    <p class="back"><a href="./house-cartogram.html">&larr; Back to the House map</a></p>
+  </article>
+  <article class="card" id="pa10">
+    <div class="card-head">
+      <h3>PA-10</h3>
+      <span class="tag">U.S. House</span>
+    </div>
+    <p class="meta">
+      <span class="pill rep">Currently Republican</span>
+      <span class="rating">2024 margin: 1.3%</span>
+    </p>
+    <dl>
+      <dt>Location</dt><dd>Harrisburg and York areas — all of Dauphin County, most of Cumberland County, northern York County</dd>
+      <dt>Incumbent</dt><dd>Rep. Perry (R)</dd>
+      <dt>Candidates</dt><dd class="fill">[ add / confirm 2026 candidate names ]</dd>
+    </dl>
+    <p class="back"><a href="./house-cartogram.html">&larr; Back to the House map</a></p>
+  </article>
+  <article class="card" id="tx15">
+    <div class="card-head">
+      <h3>TX-15</h3>
+      <span class="tag">U.S. House</span>
+    </div>
+    <p class="meta">
+      <span class="pill rep">Currently Republican</span>
+      <span class="rating">2024 margin: 14.2%</span>
+    </p>
+    <dl>
+      <dt>Location</dt><dd>South Texas — from the Rio Grande Valley (McAllen area) northward; redrawn for 2026</dd>
+      <dt>Incumbent</dt><dd>Rep. De La Cruz (R)</dd>
+      <dt>Candidates</dt><dd class="fill">[ add / confirm 2026 candidate names ]</dd>
+      <dt>Map note</dt><dd class="flag">District lines changed for 2026 — boundaries may differ from prior maps.</dd>
+    </dl>
+    <p class="back"><a href="./house-cartogram.html">&larr; Back to the House map</a></p>
+  </article>
+  <article class="card" id="tx23">
+    <div class="card-head">
+      <h3>TX-23</h3>
+      <span class="tag">U.S. House</span>
+    </div>
+    <p class="meta">
+      <span class="pill open">Currently Open / vacant</span>
+      <span class="rating">2024 margin: 24.6%</span>
+    </p>
+    <dl>
+      <dt>Location</dt><dd>West Texas — vast border district from San Antonio suburbs to El Paso; currently vacant; redrawn for 2026</dd>
+      <dt>Incumbent</dt><dd>Open seat</dd>
+      <dt>Candidates</dt><dd class="fill">[ add / confirm 2026 candidate names ]</dd>
+      <dt>Note</dt><dd>Vacant after Gonzales resigned</dd>
+      <dt>Map note</dt><dd class="flag">District lines changed for 2026 — boundaries may differ from prior maps.</dd>
+    </dl>
+    <p class="back"><a href="./house-cartogram.html">&larr; Back to the House map</a></p>
+  </article>
+  <article class="card" id="tx28">
+    <div class="card-head">
+      <h3>TX-28</h3>
+      <span class="tag">U.S. House</span>
+    </div>
+    <p class="meta">
+      <span class="pill dem">Currently Democratic</span>
+      <span class="rating">2024 margin: 5.6%</span>
+    </p>
+    <dl>
+      <dt>Location</dt><dd>South Texas — Laredo and parts of San Antonio; redrawn for 2026</dd>
+      <dt>Incumbent</dt><dd>Rep. Cuellar (D)</dd>
+      <dt>Candidates</dt><dd class="fill">[ add / confirm 2026 candidate names ]</dd>
+      <dt>Map note</dt><dd class="flag">District lines changed for 2026 — boundaries may differ from prior maps.</dd>
+    </dl>
+    <p class="back"><a href="./house-cartogram.html">&larr; Back to the House map</a></p>
+  </article>
+  <article class="card" id="tx34">
+    <div class="card-head">
+      <h3>TX-34</h3>
+      <span class="tag">U.S. House</span>
+    </div>
+    <p class="meta">
+      <span class="pill dem">Currently Democratic</span>
+      <span class="rating">2024 margin: 2.6%</span>
+    </p>
+    <dl>
+      <dt>Location</dt><dd>The southern tip of Texas — Brownsville and the Gulf Coast up toward Corpus Christi; redrawn for 2026</dd>
+      <dt>Incumbent</dt><dd>Rep. Gonzalez (D)</dd>
+      <dt>Candidates</dt><dd class="fill">[ add / confirm 2026 candidate names ]</dd>
+      <dt>Map note</dt><dd class="flag">District lines changed for 2026 — boundaries may differ from prior maps.</dd>
+    </dl>
+    <p class="back"><a href="./house-cartogram.html">&larr; Back to the House map</a></p>
+  </article>
+  <article class="card" id="va02">
+    <div class="card-head">
+      <h3>VA-02</h3>
+      <span class="tag">U.S. House</span>
+    </div>
+    <p class="meta">
+      <span class="pill rep">Currently Republican</span>
+      <span class="rating">2024 margin: 3.8%</span>
+    </p>
+    <dl>
+      <dt>Location</dt><dd>Hampton Roads — Chesapeake, Suffolk, Virginia Beach, and the Eastern Shore</dd>
+      <dt>Incumbent</dt><dd>Rep. Kiggans (R)</dd>
+      <dt>Candidates</dt><dd class="fill">[ add / confirm 2026 candidate names ]</dd>
+    </dl>
+    <p class="back"><a href="./house-cartogram.html">&larr; Back to the House map</a></p>
+  </article>
+  <article class="card" id="va07">
+    <div class="card-head">
+      <h3>VA-07</h3>
+      <span class="tag">U.S. House</span>
+    </div>
+    <p class="meta">
+      <span class="pill dem">Currently Democratic</span>
+      <span class="rating">2024 margin: 2.6%</span>
+    </p>
+    <dl>
+      <dt>Location</dt><dd>Northern and central Virginia — Fredericksburg, Culpeper, Spotsylvania, Stafford, Woodbridge</dd>
+      <dt>Incumbent</dt><dd>Rep. Vindman (D)</dd>
+      <dt>Candidates</dt><dd class="fill">[ add / confirm 2026 candidate names ]</dd>
+    </dl>
+    <p class="back"><a href="./house-cartogram.html">&larr; Back to the House map</a></p>
+  </article>
+  <article class="card" id="wa03">
+    <div class="card-head">
+      <h3>WA-03</h3>
+      <span class="tag">U.S. House</span>
+    </div>
+    <p class="meta">
+      <span class="pill dem">Currently Democratic</span>
+      <span class="rating">2024 margin: 3.9%</span>
+    </p>
+    <dl>
+      <dt>Location</dt><dd>Southwestern Washington — Vancouver and the counties along the Columbia River</dd>
+      <dt>Incumbent</dt><dd>Rep. Perez (D)</dd>
+      <dt>Candidates</dt><dd class="fill">[ add / confirm 2026 candidate names ]</dd>
+    </dl>
+    <p class="back"><a href="./house-cartogram.html">&larr; Back to the House map</a></p>
+  </article>
+  <article class="card" id="wi01">
+    <div class="card-head">
+      <h3>WI-01</h3>
+      <span class="tag">U.S. House</span>
+    </div>
+    <p class="meta">
+      <span class="pill rep">Currently Republican</span>
+      <span class="rating">2024 margin: 10.2%</span>
+    </p>
+    <dl>
+      <dt>Location</dt><dd>Southeastern corner of Wisconsin — Kenosha, Racine, Janesville, Beloit</dd>
+      <dt>Incumbent</dt><dd>Rep. Steil (R)</dd>
+      <dt>Candidates</dt><dd class="fill">[ add / confirm 2026 candidate names ]</dd>
+    </dl>
+    <p class="back"><a href="./house-cartogram.html">&larr; Back to the House map</a></p>
+  </article>
+  <article class="card" id="wi03">
+    <div class="card-head">
+      <h3>WI-03</h3>
+      <span class="tag">U.S. House</span>
+    </div>
+    <p class="meta">
+      <span class="pill rep">Currently Republican</span>
+      <span class="rating">2024 margin: 2.7%</span>
+    </p>
+    <dl>
+      <dt>Location</dt><dd>The Driftless Area of southwestern Wisconsin — Eau Claire and La Crosse</dd>
+      <dt>Incumbent</dt><dd>Rep. Van Orden (R)</dd>
+      <dt>Candidates</dt><dd class="fill">[ add / confirm 2026 candidate names ]</dd>
+    </dl>
+    <p class="back"><a href="./house-cartogram.html">&larr; Back to the House map</a></p>
+  </article>
+
+  <footer>
+    <p>Ratings and 2024 margins from The Cook Political Report via 270toWin (June 2026). Candidate fields are filled in as races are confirmed; several state maps are being redrawn for 2026 and remain subject to litigation. For voter registration and deadlines, check your Secretary of State or vote.org.</p>
+    <p><a href="./midterm-balance.html">Senate &amp; balance map</a> · <a href="./house-cartogram.html">House cartogram</a></p>
+  </footer>
+
+</div>
+</body>
+</html>

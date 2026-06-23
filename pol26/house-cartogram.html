@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The House, Seat by Seat</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;0,900;1,500&family=Lora:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#1c1a17 !important;
+    --paper:#f6f1e7 !important;
+    --paper-2:#efe7d7 !important;
+    --rule:#cbbfa8 !important;
+    --rep:#b23a32 !important;
+    --rep-soft:#d99a93 !important;
+    --dem:#2e5a86 !important;
+    --dem-soft:#9db6cd !important;
+    --tossup:#c9a13b !important;
+    --open:#6a5a8c !important;
+    --muted:#6b6253 !important;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{background:var(--paper) !important;color:var(--ink) !important;
+    font-family:'Lora',Georgia,serif;line-height:1.6;-webkit-font-smoothing:antialiased;}
+  .wrap{max-width:760px;margin:0 auto;padding:28px 20px 80px;}
+
+  .eyebrow{font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.22em;
+    text-transform:uppercase;color:var(--muted) !important;margin:0 0 14px;}
+  h1{font-family:'Playfair Display',serif;font-weight:900;
+    font-size:clamp(36px,8.5vw,64px);line-height:1;letter-spacing:-.01em;
+    margin:0 0 16px;color:var(--ink) !important;}
+  h1 em{font-style:italic;font-weight:500;}
+  .standfirst{font-size:clamp(17px,2.4vw,19px);color:#3b362d !important;max-width:60ch;margin:0 0 8px;}
+  .dateline{font-family:'IBM Plex Mono',monospace;font-size:12.5px;color:var(--muted) !important;
+    margin-top:18px;padding-top:14px;border-top:1px solid var(--rule) !important;}
+
+  /* tally */
+  .tally{margin:30px 0 6px;}
+  .tally-label{display:flex;justify-content:space-between;align-items:flex-end;
+    font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.08em;
+    color:var(--muted) !important;margin-bottom:6px;}
+  .tally-label .d{color:var(--dem) !important;font-weight:500;}
+  .tally-label .r{color:var(--rep) !important;font-weight:500;}
+  .bar{display:flex;height:34px;border:1px solid var(--ink) !important;overflow:hidden;
+    background:var(--paper-2) !important;position:relative;}
+  .bar .seg{display:flex;align-items:center;justify-content:center;
+    font-family:'IBM Plex Mono',monospace;font-size:12.5px;font-weight:500;
+    color:#fff !important;white-space:nowrap;}
+  .seg.d{background:var(--dem) !important;}
+  .seg.r{background:var(--rep) !important;}
+  .seg.v{background:var(--paper-2) !important;color:var(--muted) !important;}
+  .majority-line{position:absolute;top:-6px;bottom:-6px;left:50%;width:2px;
+    background:var(--ink) !important;z-index:3;}
+  .majority-flag{position:absolute;left:50%;top:-20px;transform:translateX(-50%);
+    font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.12em;
+    color:var(--ink) !important;white-space:nowrap;}
+  .tally-cap{font-size:14px;color:var(--muted) !important;margin:14px 0 0;}
+
+  /* read-this note */
+  .note{font-size:15px;color:#3b362d !important;margin:24px 0 0;
+    border-left:3px solid var(--tossup) !important;padding:2px 0 2px 16px;}
+  .note strong{font-weight:500;}
+
+  /* legend */
+  .legend{display:flex;flex-wrap:wrap;gap:10px 16px;margin:26px 0 6px;}
+  .legend span{display:inline-flex;align-items:center;gap:7px;
+    font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:#3b362d !important;}
+  .swatch{width:14px;height:14px;border:1px solid rgba(0,0,0,.25);display:inline-block;}
+  .sw-rep{background:var(--rep) !important;}
+  .sw-dem{background:var(--dem) !important;}
+  .sw-rep-s{background:var(--rep-soft) !important;}
+  .sw-dem-s{background:var(--dem-soft) !important;}
+  .sw-open{background:var(--open) !important;}
+
+  /* cartogram */
+  .cartowrap{margin:10px 0 0;}
+  svg{width:100%;height:auto;display:block;}
+  .cell{stroke:var(--paper) !important;stroke-width:.8;}
+  .cell.safe-r{fill:var(--rep-soft) !important;}
+  .cell.safe-d{fill:var(--dem-soft) !important;}
+  .cell.safe-v{fill:var(--paper-2) !important;}
+  .comp{stroke:var(--ink) !important;stroke-width:1.1;cursor:pointer;transition:filter .15s;}
+  .comp:hover{filter:brightness(1.12);}
+  .comp.c-rep{fill:var(--rep) !important;}
+  .comp.c-dem{fill:var(--dem) !important;}
+  .comp.c-open{fill:var(--open) !important;}
+  .comp.sel{stroke-width:2.4;}
+  .compg{cursor:pointer;}
+  .compg:focus{outline:none;}
+  .compg:focus .comp{stroke-width:2.4;stroke:var(--ink) !important;}
+  .clabel{font-family:'IBM Plex Mono',monospace;font-size:8.5px;font-weight:500;
+    fill:#fff !important;pointer-events:none;letter-spacing:.02em;}
+
+  .hint{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--muted) !important;
+    margin:12px 0 0;text-align:center;letter-spacing:.04em;}
+
+  /* readout */
+  .readout{border:1px solid var(--rule) !important;background:var(--paper-2) !important;
+    padding:16px 18px;margin:18px 0 0;min-height:72px;}
+  .readout .ro-state{font-family:'Playfair Display',serif;font-weight:700;font-size:21px;
+    margin:0 0 4px;color:var(--ink) !important;}
+  .readout .ro-meta{font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.05em;
+    color:var(--muted) !important;margin:0 0 8px;}
+  .readout .ro-body{font-size:15px;margin:0;color:#3b362d !important;}
+  .readout .ro-empty{color:var(--muted) !important;font-style:italic;}
+  .ro-more{margin:10px 0 0 !important;}
+  .ro-more a{font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.04em;
+    color:var(--dem) !important;text-decoration:none;border-bottom:1px solid var(--dem) !important;
+    padding-bottom:1px;}
+  .ro-more a:hover{color:var(--ink) !important;border-color:var(--ink) !important;}
+  .pill{display:inline-block;font-family:'IBM Plex Mono',monospace;font-size:11px;
+    letter-spacing:.06em;padding:2px 8px;border-radius:2px;color:#fff !important;}
+  .pill.rep{background:var(--rep) !important;}
+  .pill.dem{background:var(--dem) !important;}
+  .pill.open{background:var(--open) !important;}
+
+  /* margin scale note */
+  .scale{display:flex;align-items:center;gap:10px;margin:22px 0 0;
+    font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--muted) !important;}
+  .scale .grad{flex:1;height:10px;border:1px solid var(--rule) !important;
+    background:linear-gradient(90deg,#8a2018,#d99a93 50%,#9db6cd 50%,#1f4670) !important;}
+
+  .qfooter{font-family:'Playfair Display',serif;font-style:italic;font-size:19px;
+    color:var(--ink) !important;margin:42px 0 6px;line-height:1.35;}
+  footer{margin-top:34px;padding-top:18px;border-top:1px solid var(--rule) !important;
+    font-size:13px;color:var(--muted) !important;}
+  footer a{color:var(--dem) !important;}
+
+  @media (max-width:520px){.cell,.comp{stroke-width:.6;}}
+  @media (prefers-reduced-motion:reduce){*{transition:none !important;}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <p class="eyebrow">A Civic Field Guide · Part Two</p>
+  <h1>The House,<br><em>Seat</em> by Seat</h1>
+  <p class="standfirst">All 435 House seats are drawn below &mdash; one square each. Most are not in doubt. The chamber is decided by the few dozen outlined in bold: tap any of them for who holds it now and how close it was in 2024.</p>
+  <p class="dateline">435 squares · 49 competitive · Updated June 2026</p>
+
+  <div class="tally">
+    <div class="tally-label"><span class="d">Democrats 212</span><span class="r">219 Republicans</span></div>
+    <div class="bar" id="hou-bar"></div>
+  </div>
+  <p class="tally-cap">Republicans hold a 219&ndash;212 majority with four vacant seats. Democrats need a net gain of three to flip the House &mdash; forecasters rate the chamber a genuine toss-up.</p>
+
+  <p class="note"><strong>Why squares, not a real map?</strong> A geographic map makes empty rural districts look huge and packs dozens of city seats into a dot &mdash; it distorts the very thing we&rsquo;re counting. One square per seat shows the chamber as it actually divides. And with several states redrawing their maps mid-decade (Texas, California, North Carolina, Ohio, Missouri, Utah), the safe seats are shown in aggregate; the competitive ones, where the verified detail lives, are individual and tappable.</p>
+
+  <div class="legend">
+    <span><i class="swatch sw-dem"></i> Competitive · Dem-held</span>
+    <span><i class="swatch sw-rep"></i> Competitive · GOP-held</span>
+    <span><i class="swatch sw-open"></i> Open / redistricting</span>
+    <span><i class="swatch sw-dem-s"></i> Safe Democratic</span>
+    <span><i class="swatch sw-rep-s"></i> Safe Republican</span>
+  </div>
+
+  <div class="cartowrap" id="carto"></div>
+  <p class="hint" id="hint">Tap a bold square to see the race &middot; 49 in play</p>
+
+  <div class="readout" id="readout">
+    <p class="ro-empty">Select a competitive district above.</p>
+  </div>
+
+  <div class="scale">
+    <span>Closer in 2024</span>
+    <span class="grad"></span>
+    <span>Safer</span>
+  </div>
+  <p class="tally-cap">Outlined squares are sized the same, but the ones that flipped on the thinnest 2024 margins &mdash; CA-13 (0.1%), CA-45 (0.2%), IA-01 (0.2%), OH-09 (0.6%), ME-02 (0.7%), CO-08 (0.7%) &mdash; are the seats most likely to move again.</p>
+
+  <p class="qfooter">If only about one seat in nine is truly contested, is the House really &ldquo;the people&rsquo;s chamber&rdquo; &mdash; or a fight over a few dozen districts? What would change that?</p>
+
+  <footer>
+    <p><strong>How to read this:</strong> Each square is one of the 435 House seats. Pale squares are seats rated safe for the incumbent party and shown only in aggregate (~219 R / 212 D / 4 vacant). Bold-outlined squares are the 49 districts rated competitive by forecasters; tapping one shows the current officeholder and the 2024 House margin of victory. Competitive set and margins from The Cook Political Report via 270toWin (June 18, 2026). This reflects current seats; several state maps are being redrawn for 2026 and remain subject to litigation.</p>
+    <p>Sources: 270toWin, Cook Political Report, Ballotpedia, U.S. House records. Built as an open civic explainer &mdash; share and adapt freely. For voter registration and deadlines, check your Secretary of State or vote.org.</p>
+  </footer>
+
+</div>
+
+<script>
+/* ---------- competitive districts (verified layer) ---------- */
+const COMP = [
+ ["AK-AL","R","Begich",2.4,""],
+ ["AL-02","D","Figures",9.2,""],
+ ["AZ-01","R","Schweikert",3.8,"Retiring to run for governor"],
+ ["AZ-02","R","Crane",9.0,""],
+ ["AZ-06","R","Ciscomani",2.5,""],
+ ["CA-13","D","Gray",0.1,"Tightest House margin in the country in 2024"],
+ ["CA-21","D","Costa",5.1,""],
+ ["CA-22","R","Valadao",6.8,""],
+ ["CA-41","R","Calvert",3.4,""],
+ ["CA-45","D","Tran",0.2,""],
+ ["CO-08","R","Evans",0.7,""],
+ ["FL-09","D","Soto",12.6,""],
+ ["FL-13","R","Luna",9.6,""],
+ ["FL-27","R","Salazar",20.8,""],
+ ["IA-01","R","Miller-Meeks",0.2,""],
+ ["IA-03","R","Nunn",3.8,""],
+ ["ME-02","D","Golden",0.7,"Open \u2014 incumbent not seeking re-election"],
+ ["MI-07","R","Barrett",3.7,""],
+ ["MI-08","D","McDonald Rivet",6.6,""],
+ ["MI-10","R","James",6.1,"Open \u2014 running for governor"],
+ ["NC-01","D","Davis",1.7,""],
+ ["NE-02","R","Bacon",1.9,"Open \u2014 incumbent not running"],
+ ["NJ-07","R","Kean",5.4,""],
+ ["NM-02","D","Vasquez",4.2,""],
+ ["NV-01","D","Titus",7.5,""],
+ ["NV-03","D","Lee",2.7,""],
+ ["NV-04","D","Horsford",8.1,""],
+ ["NY-01","R","LaLota",10.4,""],
+ ["NY-03","D","Suozzi",3.6,""],
+ ["NY-04","D","Gillen",2.3,""],
+ ["NY-17","R","Lawler",6.3,"Cook\u2019s only true NY toss-up; Harris won the seat"],
+ ["NY-19","D","Riley",2.2,""],
+ ["OH-01","D","Landsman",9.2,""],
+ ["OH-09","D","Kaptur",0.6,"Longtime incumbent in a redrawn seat"],
+ ["OH-13","D","Sykes",2.2,""],
+ ["OR-05","D","Bynum",2.7,""],
+ ["PA-01","R","Fitzpatrick",12.8,"GOP-held seat Harris carried"],
+ ["PA-07","R","Mackenzie",1.0,""],
+ ["PA-08","R","Bresnahan",1.6,"Recently moved to Toss-up"],
+ ["PA-10","R","Perry",1.3,""],
+ ["TX-15","R","De La Cruz",14.2,""],
+ ["TX-23","O","Open seat",24.6,"Vacant after Gonzales resigned"],
+ ["TX-28","D","Cuellar",5.6,""],
+ ["TX-34","D","Gonzalez",2.6,""],
+ ["VA-02","R","Kiggans",3.8,""],
+ ["VA-07","D","Vindman",2.6,""],
+ ["WA-03","D","Perez",3.9,""],
+ ["WI-01","R","Steil",10.2,""],
+ ["WI-03","R","Van Orden",2.7,""]
+];
+
+/* ---------- aggregate safe-seat counts (background mass) ---------- */
+// Current: 219 R, 212 D, 4 vacant = 435. Subtract competitive holders.
+const compR = COMP.filter(c=>c[1]==='R').length; // 25
+const compD = COMP.filter(c=>c[1]==='D').length; // 23
+const compO = COMP.filter(c=>c[1]==='O').length; // 1 (TX-23, was R)
+const TOTAL=435;
+const curR=219, curD=212, curV=4;
+// safe seats = current minus the competitive ones of that party (open TX-23 counts against R's vacancy pool)
+const safeR = curR - compR;          // 194
+const safeD = curD - compD;          // 189
+const safeV = curV;                  // 4 vacant shown as pale neutral, includes TX-23 open competitive? TX-23 is in COMP, so reduce vacant by 1 and show it as competitive open.
+const safeVadj = safeV - compO;      // 3 remaining vacant in background
+
+/* ---------- tally bar ---------- */
+(function(){
+  const el=document.getElementById('hou-bar');
+  const segs=[
+    {c:'d',w:48.7,t:'212 D'},
+    {c:'r',w:50.3,t:'219 R'},
+    {c:'v',w:1.0,t:''}
+  ];
+  el.innerHTML='';
+  segs.forEach(s=>{const d=document.createElement('div');d.className='seg '+s.c;
+    d.style.width=s.w+'%';d.textContent=s.t;el.appendChild(d);});
+  const line=document.createElement('div');line.className='majority-line';
+  const flag=document.createElement('div');flag.className='majority-flag';flag.textContent='218 \u2192 majority';
+  el.appendChild(line);el.appendChild(flag);
+})();
+
+/* ---------- build cartogram grid ---------- */
+/* We lay out 435 cells in a tidy grid. Background (safe) cells fill first by party
+   block; competitive cells are placed in a distinct band so they read as "the contested middle". */
+const COLS=29;                 // 29 * 15 = 435 exactly
+const CELL=20, GAP=3;
+const cellsPerRow=COLS;
+const rows=Math.ceil(TOTAL/COLS); // 15
+const W=COLS*(CELL+GAP)+GAP;
+const H=rows*(CELL+GAP)+GAP;
+
+// Build an ordered list of 435 cells.
+// Order: safe D block | competitive D | open | competitive R | safe R | vacant
+// so the contested seats cluster in the center, mirroring a "crossing the aisle" read.
+let cells=[];
+for(let i=0;i<safeD;i++) cells.push({type:'safe',cls:'safe-d'});
+COMP.filter(c=>c[1]==='D').forEach(c=>cells.push({type:'comp',cls:'c-dem',d:c}));
+COMP.filter(c=>c[1]==='O').forEach(c=>cells.push({type:'comp',cls:'c-open',d:c}));
+COMP.filter(c=>c[1]==='R').forEach(c=>cells.push({type:'comp',cls:'c-rep',d:c}));
+for(let i=0;i<safeR;i++) cells.push({type:'safe',cls:'safe-r'});
+for(let i=0;i<safeVadj;i++) cells.push({type:'safe',cls:'safe-v'});
+// pad/truncate to exactly 435
+while(cells.length<TOTAL) cells.push({type:'safe',cls:'safe-v'});
+cells=cells.slice(0,TOTAL);
+
+let svg=`<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="All 435 US House seats as squares, competitive districts outlined">`;
+cells.forEach((cell,idx)=>{
+  const col=idx%COLS, row=Math.floor(idx/COLS);
+  const x=GAP+col*(CELL+GAP), y=GAP+row*(CELL+GAP);
+  if(cell.type==='comp'){
+    const code=cell.d[0];
+    const st=code.slice(0,2);
+    svg+=`<g class="compg" data-code="${code}" tabindex="0" role="button" aria-label="${code}, competitive district">`;
+    svg+=`<rect class="comp ${cell.cls}" data-code="${code}" x="${x}" y="${y}" width="${CELL}" height="${CELL}" rx="2"></rect>`;
+    svg+=`<text class="clabel" x="${x+CELL/2}" y="${y+CELL/2}" text-anchor="middle" dominant-baseline="central">${st}</text>`;
+    svg+=`</g>`;
+  } else {
+    svg+=`<rect class="cell ${cell.cls}" x="${x}" y="${y}" width="${CELL}" height="${CELL}" rx="2"></rect>`;
+  }
+});
+svg+=`</svg>`;
+document.getElementById('carto').innerHTML=svg;
+
+/* ---------- interaction ---------- */
+const byCode={};
+COMP.forEach(c=>byCode[c[0]]=c);
+let selected=null;
+function pick(code,node){
+  if(selected) selected.classList.remove('sel');
+  node.classList.add('sel'); selected=node;
+  const [cd,party,inc,margin,note]=byCode[code];
+  const partyName = party==='D'?'Democratic':party==='R'?'Republican':'Open';
+  const pillCls = party==='D'?'dem':party==='R'?'rep':'open';
+  const heldTxt = party==='O'?'Currently vacant':('Currently '+partyName);
+  const anchor = cd.toLowerCase().replace('-','');
+  const el=document.getElementById('readout');
+  el.innerHTML=`<p class="ro-state">${cd}</p>
+    <p class="ro-meta"><span class="pill ${pillCls}">${heldTxt}</span>
+      &nbsp; <span style="color:var(--ink)">2024 margin: ${margin}%</span></p>
+    <p class="ro-body"><strong>${inc}</strong>${note?' &mdash; '+note:''}</p>
+    <p class="ro-more"><a href="./support.html#${anchor}">More info &rarr;</a></p>`;
+}
+document.querySelectorAll('.compg').forEach(g=>{
+  const code=g.getAttribute('data-code');
+  const rect=g.querySelector('.comp');
+  g.addEventListener('click',()=>pick(code,rect));
+  g.addEventListener('keydown',e=>{
+    if(e.key==='Enter'||e.key===' '){e.preventDefault();pick(code,rect);}
+  });
+});
+</script>
+</body>
+</html>

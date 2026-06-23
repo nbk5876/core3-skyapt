@@ -1,0 +1,215 @@
+{
+  "_meta": {
+    "description": "Competitive U.S. House district locations for the 2026 civic explainer. Locations sourced from Wikipedia state-level 2026 House election articles (current/2026 boundaries). Candidates left null until races settle.",
+    "source": "Wikipedia 2026 US House elections by state; redrawn-state list from Ballotpedia, June 2026",
+    "redrawn_states": [
+      "CA",
+      "MO",
+      "NC",
+      "TX",
+      "OH",
+      "UT",
+      "FL"
+    ],
+    "redrawn_note": "These states use different 2026 maps than 2024 (voluntary mid-decade redistricting, state law, or litigation). District geography may differ from prior boundaries.",
+    "last_updated": "2026-06-22"
+  },
+  "districts": {
+    "PA-01": {
+      "location": "Northern suburbs of Philadelphia — all of Bucks County and parts of Montgomery County",
+      "redrawn": false
+    },
+    "PA-07": {
+      "location": "The Lehigh Valley — Lehigh, Northampton, and Carbon counties",
+      "redrawn": false
+    },
+    "PA-08": {
+      "location": "Northeastern Pennsylvania — the Scranton–Wilkes-Barre area",
+      "redrawn": false
+    },
+    "PA-10": {
+      "location": "Harrisburg and York areas — all of Dauphin County, most of Cumberland County, northern York County",
+      "redrawn": false
+    },
+    "NY-01": {
+      "location": "Eastern Long Island — central and eastern Suffolk County",
+      "redrawn": false
+    },
+    "NY-03": {
+      "location": "North Shore of Nassau County and northeast Queens — Glen Cove, North Hempstead, parts of Oyster Bay, Whitestone, Little Neck, Douglaston",
+      "redrawn": false
+    },
+    "NY-04": {
+      "location": "South Shore of Nassau County — entirely within the town of Hempstead",
+      "redrawn": false
+    },
+    "NY-17": {
+      "location": "Lower Hudson Valley — Rockland, Putnam, and parts of Westchester and Dutchess counties",
+      "redrawn": false
+    },
+    "NY-19": {
+      "location": "Upper Hudson Valley across the Catskills to the Southern Tier and Finger Lakes — incl. Binghamton, Ithaca, Oneonta",
+      "redrawn": false
+    },
+    "CA-13": {
+      "location": "Central Valley (San Joaquin / Merced area) — boundaries redrawn under Prop 50 for 2026",
+      "redrawn": true
+    },
+    "CA-21": {
+      "location": "Central Valley — Fresno-area district; boundaries redrawn under Prop 50 for 2026",
+      "redrawn": true
+    },
+    "CA-22": {
+      "location": "Southern Central Valley — Kings County and parts of Kern/Tulare; redrawn under Prop 50 for 2026",
+      "redrawn": true
+    },
+    "CA-41": {
+      "location": "Riverside County — redrawn under Prop 50 for 2026",
+      "redrawn": true
+    },
+    "CA-45": {
+      "location": "Orange County area — redrawn under Prop 50 for 2026",
+      "redrawn": true
+    },
+    "AZ-01": {
+      "location": "Northeastern Phoenix suburbs, including Scottsdale",
+      "redrawn": false
+    },
+    "AZ-02": {
+      "location": "Northeastern Arizona — Prescott, Flagstaff, and much of the Navajo Nation",
+      "redrawn": false
+    },
+    "AZ-06": {
+      "location": "Southeastern Arizona — the Tucson area",
+      "redrawn": false
+    },
+    "FL-09": {
+      "location": "Orlando suburbs — Osceola County, Kissimmee, St. Cloud; boundaries redrawn for 2026",
+      "redrawn": true
+    },
+    "FL-13": {
+      "location": "Pinellas County — the St. Petersburg area; boundaries redrawn for 2026",
+      "redrawn": true
+    },
+    "FL-27": {
+      "location": "Miami-Dade County — the Miami area; boundaries redrawn for 2026",
+      "redrawn": true
+    },
+    "MI-07": {
+      "location": "Lansing–East Lansing area, plus Livingston County and part of Oakland County",
+      "redrawn": false
+    },
+    "MI-08": {
+      "location": "The Saginaw Bay region — Flint, Saginaw, Bay City, and Midland",
+      "redrawn": false
+    },
+    "MI-10": {
+      "location": "Southeastern Michigan's Macomb County — Warren and Sterling Heights, plus part of eastern Oakland County",
+      "redrawn": false
+    },
+    "NV-01": {
+      "location": "Inner Las Vegas and southeastern Clark County — Paradise, Henderson, Boulder City",
+      "redrawn": false
+    },
+    "NV-03": {
+      "location": "Western Las Vegas suburbs — Spring Valley, Summerlin South, Sandy Valley",
+      "redrawn": false
+    },
+    "NV-04": {
+      "location": "Northern Las Vegas and the Strip, plus rural central Nevada",
+      "redrawn": false
+    },
+    "IA-01": {
+      "location": "Southeastern Iowa — Davenport and Iowa City",
+      "redrawn": false
+    },
+    "IA-03": {
+      "location": "South-central Iowa — the Des Moines area",
+      "redrawn": false
+    },
+    "WI-01": {
+      "location": "Southeastern corner of Wisconsin — Kenosha, Racine, Janesville, Beloit",
+      "redrawn": false
+    },
+    "WI-03": {
+      "location": "The Driftless Area of southwestern Wisconsin — Eau Claire and La Crosse",
+      "redrawn": false
+    },
+    "VA-02": {
+      "location": "Hampton Roads — Chesapeake, Suffolk, Virginia Beach, and the Eastern Shore",
+      "redrawn": false
+    },
+    "VA-07": {
+      "location": "Northern and central Virginia — Fredericksburg, Culpeper, Spotsylvania, Stafford, Woodbridge",
+      "redrawn": false
+    },
+    "AK-AL": {
+      "location": "Statewide — Alaska's single at-large district (ranked-choice voting)",
+      "redrawn": false
+    },
+    "AL-02": {
+      "location": "Southern Alabama — Montgomery, parts of Mobile, and Tuskegee (redrawn after 2023 VRA ruling)",
+      "redrawn": false
+    },
+    "CO-08": {
+      "location": "North Denver suburbs — Adams and Weld counties, including Thornton and Greeley",
+      "redrawn": false
+    },
+    "ME-02": {
+      "location": "Northern and rural Maine — everything outside the southern coast (Bangor, Lewiston)",
+      "redrawn": false
+    },
+    "NC-01": {
+      "location": "Northeastern North Carolina — rural counties plus part of the Research Triangle; boundaries shifted ~8 pts rightward for 2026",
+      "redrawn": true
+    },
+    "NE-02": {
+      "location": "The Omaha area — all of Douglas and Saunders counties and western Sarpy County",
+      "redrawn": false
+    },
+    "NJ-07": {
+      "location": "North-central New Jersey — suburban/exurban areas across Hunterdon, Somerset, Union, Warren, and Morris counties",
+      "redrawn": false
+    },
+    "NM-02": {
+      "location": "Southern New Mexico — Las Cruces, the southern half of the state, and part of Albuquerque",
+      "redrawn": false
+    },
+    "OR-05": {
+      "location": "From southeastern Portland suburbs across the Willamette Valley and Cascades to Bend",
+      "redrawn": false
+    },
+    "WA-03": {
+      "location": "Southwestern Washington — Vancouver and the counties along the Columbia River",
+      "redrawn": false
+    },
+    "TX-15": {
+      "location": "South Texas — from the Rio Grande Valley (McAllen area) northward; redrawn for 2026",
+      "redrawn": true
+    },
+    "TX-23": {
+      "location": "West Texas — vast border district from San Antonio suburbs to El Paso; currently vacant; redrawn for 2026",
+      "redrawn": true
+    },
+    "TX-28": {
+      "location": "South Texas — Laredo and parts of San Antonio; redrawn for 2026",
+      "redrawn": true
+    },
+    "TX-34": {
+      "location": "The southern tip of Texas — Brownsville and the Gulf Coast up toward Corpus Christi; redrawn for 2026",
+      "redrawn": true
+    },
+    "OH-01": {
+      "location": "Southwestern Ohio — Cincinnati and parts of Hamilton/Warren counties; redrawn for 2026",
+      "redrawn": true
+    },
+    "OH-09": {
+      "location": "Northern Ohio along Lake Erie — Toledo eastward; redrawn for 2026",
+      "redrawn": true
+    },
+    "OH-13": {
+      "location": "Northeastern Ohio — the Akron area; redrawn for 2026",
+      "redrawn": true
+    }
+  }
+}

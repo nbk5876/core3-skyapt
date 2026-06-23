@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The 2026 Balance of Power</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;0,900;1,500&family=Lora:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#1c1a17 !important;
+    --paper:#f6f1e7 !important;
+    --paper-2:#efe7d7 !important;
+    --rule:#cbbfa8 !important;
+    --rep:#b23a32 !important;       /* deep brick red */
+    --rep-soft:#e0a39d !important;
+    --dem:#2e5a86 !important;       /* slate blue */
+    --dem-soft:#9fb8cf !important;
+    --tossup:#c9a13b !important;    /* brass */
+    --ind:#6a5a8c !important;       /* muted violet */
+    --muted:#6b6253 !important;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:var(--paper) !important;
+    color:var(--ink) !important;
+    font-family:'Lora',Georgia,serif;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:760px;margin:0 auto;padding:28px 20px 80px;}
+
+  /* ---- Masthead ---- */
+  .eyebrow{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:12px;letter-spacing:.22em;text-transform:uppercase;
+    color:var(--muted) !important;margin:0 0 14px;
+  }
+  h1{
+    font-family:'Playfair Display',serif;
+    font-weight:900;
+    font-size:clamp(38px,9vw,68px);
+    line-height:.98;letter-spacing:-.01em;
+    margin:0 0 16px;color:var(--ink) !important;
+  }
+  h1 em{font-style:italic;font-weight:500;}
+  .standfirst{
+    font-size:clamp(17px,2.4vw,19px);
+    color:#3b362d !important;max-width:60ch;margin:0 0 8px;
+  }
+  .dateline{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:12.5px;color:var(--muted) !important;
+    margin-top:18px;padding-top:14px;
+    border-top:1px solid var(--rule) !important;
+  }
+
+  /* ---- Section heads ---- */
+  .chamber{margin-top:54px;}
+  .chamber-head{
+    display:flex;align-items:baseline;gap:14px;
+    border-bottom:2px solid var(--ink) !important;
+    padding-bottom:8px;margin-bottom:6px;
+  }
+  .chamber-head h2{
+    font-family:'Playfair Display',serif;font-weight:700;
+    font-size:clamp(26px,5vw,38px);margin:0;color:var(--ink) !important;
+  }
+  .chamber-head .num{
+    font-family:'IBM Plex Mono',monospace;font-size:13px;
+    color:var(--muted) !important;margin-left:auto;letter-spacing:.1em;
+  }
+
+  /* ---- Tally bar ---- */
+  .tally{margin:22px 0 10px;}
+  .tally-label{
+    display:flex;justify-content:space-between;align-items:flex-end;
+    font-family:'IBM Plex Mono',monospace;font-size:12px;
+    letter-spacing:.08em;color:var(--muted) !important;margin-bottom:6px;
+  }
+  .tally-label .d{color:var(--dem) !important;font-weight:500;}
+  .tally-label .r{color:var(--rep) !important;font-weight:500;}
+  .bar{
+    display:flex;height:34px;border:1px solid var(--ink) !important;
+    overflow:hidden;background:var(--paper-2) !important;position:relative;
+  }
+  .bar .seg{display:flex;align-items:center;justify-content:center;
+    font-family:'IBM Plex Mono',monospace;font-size:12.5px;font-weight:500;
+    color:#fff !important;transition:width .9s cubic-bezier(.22,1,.36,1);white-space:nowrap;}
+  .seg.d{background:var(--dem) !important;}
+  .seg.r{background:var(--rep) !important;}
+  .seg.i{background:var(--ind) !important;}
+  .seg.t{background:var(--tossup) !important;color:#2a2208 !important;}
+  .seg.v{background:var(--paper-2) !important;color:var(--muted) !important;}
+  .majority-line{
+    position:absolute;top:-6px;bottom:-6px;left:50%;width:2px;
+    background:var(--ink) !important;z-index:3;
+  }
+  .majority-flag{
+    position:absolute;left:50%;top:-20px;transform:translateX(-50%);
+    font-family:'IBM Plex Mono',monospace;font-size:10px;
+    letter-spacing:.12em;color:var(--ink) !important;white-space:nowrap;
+  }
+  .tally-cap{font-size:14px;color:var(--muted) !important;margin:14px 0 0;}
+
+  /* ---- Toggle ---- */
+  .toggle{
+    display:inline-flex;border:1px solid var(--ink) !important;
+    margin:26px 0 8px;overflow:hidden;
+  }
+  .toggle button{
+    font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.08em;
+    text-transform:uppercase;background:transparent;color:var(--ink) !important;
+    border:none;padding:9px 15px;cursor:pointer;transition:background .2s;
+  }
+  .toggle button + button{border-left:1px solid var(--ink) !important;}
+  .toggle button.active{background:var(--ink) !important;color:var(--paper) !important;}
+
+  /* ---- Map ---- */
+  .mapwrap{margin:14px 0 0;}
+  svg{width:100%;height:auto;display:block;}
+  .st{stroke:var(--paper) !important;stroke-width:1.1;cursor:pointer;transition:opacity .15s,filter .15s;}
+  .st:hover{filter:brightness(1.08);}
+  .st.f-rep{fill:var(--rep) !important;}
+  .st.f-rep-soft{fill:var(--rep-soft) !important;}
+  .st.f-dem{fill:var(--dem) !important;}
+  .st.f-dem-soft{fill:var(--dem-soft) !important;}
+  .st.f-toss{fill:var(--tossup) !important;}
+  .st.f-ind{fill:var(--ind) !important;}
+  .st.f-none{fill:var(--paper-2) !important;}
+  .st.dim{opacity:.28;}
+  .stlabel{font-family:'IBM Plex Mono',monospace;font-size:9px;fill:#fff !important;pointer-events:none;font-weight:500;}
+  .stlabel.dark{fill:#2a2208 !important;}
+
+  /* ---- Legend ---- */
+  .legend{display:flex;flex-wrap:wrap;gap:10px 16px;margin:18px 0 4px;}
+  .legend span{display:inline-flex;align-items:center;gap:7px;
+    font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:#3b362d !important;}
+  .swatch{width:14px;height:14px;border:1px solid rgba(0,0,0,.25);display:inline-block;}
+  .sw-rep{background:var(--rep) !important;}
+  .sw-dem{background:var(--dem) !important;}
+  .sw-toss{background:var(--tossup) !important;}
+  .sw-ind{background:var(--ind) !important;}
+
+  /* ---- Readout ---- */
+  .readout{
+    border:1px solid var(--rule) !important;background:var(--paper-2) !important;
+    padding:16px 18px;margin:20px 0 0;min-height:74px;
+  }
+  .readout .ro-state{
+    font-family:'Playfair Display',serif;font-weight:700;font-size:21px;
+    margin:0 0 4px;color:var(--ink) !important;
+  }
+  .readout .ro-meta{font-family:'IBM Plex Mono',monospace;font-size:12px;
+    letter-spacing:.05em;color:var(--muted) !important;margin:0 0 8px;}
+  .readout .ro-body{font-size:15px;margin:0;color:#3b362d !important;}
+  .readout .ro-empty{color:var(--muted) !important;font-style:italic;}
+  .pill{display:inline-block;font-family:'IBM Plex Mono',monospace;font-size:11px;
+    letter-spacing:.06em;padding:2px 8px;border-radius:2px;color:#fff !important;}
+  .pill.rep{background:var(--rep) !important;}
+  .pill.dem{background:var(--dem) !important;}
+  .pill.toss{background:var(--tossup) !important;color:#2a2208 !important;}
+  .pill.ind{background:var(--ind) !important;}
+
+  /* ---- House note ---- */
+  .note{font-size:15px;color:#3b362d !important;margin:18px 0 0;
+    border-left:3px solid var(--tossup) !important;padding:2px 0 2px 16px;}
+  .note strong{font-weight:500;}
+
+  .watch h3{font-family:'Playfair Display',serif;font-weight:700;font-size:20px;
+    margin:30px 0 4px;color:var(--ink) !important;}
+  .watch table{width:100%;border-collapse:collapse;margin-top:10px;font-size:14px;}
+  .watch th,.watch td{text-align:left;padding:8px 6px;border-bottom:1px solid var(--rule) !important;}
+  .watch th{font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.1em;
+    text-transform:uppercase;color:var(--muted) !important;font-weight:500;}
+  .watch td:first-child{font-weight:500;}
+  .rate{font-family:'IBM Plex Mono',monospace;font-size:11px;}
+
+  /* ---- Footer ---- */
+  footer{margin-top:60px;padding-top:18px;border-top:1px solid var(--rule) !important;
+    font-size:13px;color:var(--muted) !important;}
+  footer a{color:var(--dem) !important;}
+  .qfooter{font-family:'Playfair Display',serif;font-style:italic;font-size:19px;
+    color:var(--ink) !important;margin:40px 0 6px;line-height:1.35;}
+
+  @media (max-width:520px){
+    .chamber-head{flex-wrap:wrap;}
+    .chamber-head .num{margin-left:0;width:100%;}
+    .stlabel{font-size:8px;}
+  }
+  @media (prefers-reduced-motion:reduce){
+    .seg{transition:none !important;}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <p class="eyebrow">A Civic Field Guide · Fremont, Seattle</p>
+  <h1>The 2026<br><em>Balance</em> of Power</h1>
+  <p class="standfirst">Republicans hold both chambers of Congress as the midterms approach. Here is where things stand today &mdash; and the handful of races that decide what the next Congress looks like when winners are sworn in on January 3, 2027.</p>
+  <p class="dateline">Tap any state. Switch between today and the forecast. Updated June 2026.</p>
+
+  <!-- ================= SENATE ================= -->
+  <section class="chamber" id="senate">
+    <div class="chamber-head">
+      <h2>The Senate</h2>
+      <span class="num">100 seats · 51 to control</span>
+    </div>
+
+    <div class="tally">
+      <div class="tally-label"><span class="d" id="sen-d-lab">Democrats &amp; Independents 47</span><span class="r" id="sen-r-lab">47 Republicans</span></div>
+      <div class="bar" id="sen-bar"></div>
+    </div>
+    <p class="tally-cap" id="sen-cap"></p>
+
+    <div class="toggle" id="sen-toggle">
+      <button class="active" data-view="now">Senate today</button>
+      <button data-view="fc">2027 forecast</button>
+    </div>
+
+    <div class="legend">
+      <span><i class="swatch sw-dem"></i> Democratic-held</span>
+      <span><i class="swatch sw-rep"></i> Republican-held</span>
+      <span><i class="swatch sw-toss"></i> Toss-up</span>
+      <span><i class="swatch sw-ind"></i> Independent in play</span>
+    </div>
+
+    <div class="mapwrap" id="sen-map"></div>
+
+    <div class="readout" id="sen-readout">
+      <p class="ro-empty">Select a state to see its 2026 Senate picture.</p>
+    </div>
+
+    <div class="watch">
+      <h3>The four seats that decide the Senate</h3>
+      <p class="tally-cap">Democrats need a net gain of four to take the majority. Consensus forecasters (Cook, Sabato, Inside Elections) currently see a likely net Democratic gain of one to three &mdash; just short. These are the seats still genuinely contested.</p>
+      <table>
+        <thead><tr><th>Race</th><th>Held by</th><th>Consensus rating</th></tr></thead>
+        <tbody id="watch-body"></tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ================= HOUSE ================= -->
+  <section class="chamber" id="house">
+    <div class="chamber-head">
+      <h2>The House</h2>
+      <span class="num">435 seats · 218 to control</span>
+    </div>
+
+    <div class="tally">
+      <div class="tally-label"><span class="d" id="hou-d-lab">Democrats 214</span><span class="r" id="hou-r-lab">218 Republicans</span></div>
+      <div class="bar" id="hou-bar"></div>
+    </div>
+    <p class="tally-cap" id="hou-cap"></p>
+
+    <p class="note"><strong>Why no House map by state?</strong> Most states split their districts between both parties, so coloring whole states would hide what actually happens. The House is decided district by district &mdash; a few dozen competitive seats out of 435. The bar above is the honest picture; the margin below is what's in play.</p>
+
+    <div class="watch">
+      <h3>How thin the margin is</h3>
+      <p class="tally-cap">Republicans can afford to lose only a small handful of seats. Democrats need a net gain of three to flip the chamber. Forecasters rate the House a genuine toss-up, with redistricting fights in Texas, California, North Carolina, Ohio, Missouri, Virginia and Utah reshaping the battlefield.</p>
+      <table>
+        <thead><tr><th>Measure</th><th>Number</th></tr></thead>
+        <tbody>
+          <tr><td>Seats Democrats need to flip control</td><td class="rate">+3 net</td></tr>
+          <tr><td>Districts Trump won, held by Democrats</td><td class="rate">~23</td></tr>
+          <tr><td>Districts Harris won, held by Republicans</td><td class="rate">~8</td></tr>
+          <tr><td>Competitive (Toss-up / Lean) districts</td><td class="rate">~40</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <p class="qfooter">If both chambers are this close, what do you think actually changes for the next two years &mdash; and what stays gridlocked no matter who wins?</p>
+
+  <footer>
+    <p><strong>How to read this:</strong> &ldquo;Today&rdquo; reflects the current 119th Congress. The &ldquo;2027 forecast&rdquo; is the consensus of three nonpartisan forecasters &mdash; The Cook Political Report, Sabato&rsquo;s Crystal Ball, and Inside Elections &mdash; as compiled by 270toWin (June 2026). A seat shows as a toss-up only where the race is genuinely undecided; this is a forecast, not a result.</p>
+    <p>Sources: 270toWin consensus forecast, Cook Political Report, Ballotpedia, U.S. Senate &amp; House records. Built as an open civic explainer &mdash; share and adapt freely.</p>
+  </footer>
+
+</div>
+
+<script>
+/* ---------------- DATA ---------------- */
+// Senate states up in 2026 with current holder + consensus forecast rating.
+// rating: 'safe-d','lean-d','safe-r','lean-r','toss','ind' (ind = competitive independent bid)
+const SEN = {
+  // --- Competitive / forecast-relevant ---
+  ME:{held:'R',name:'Maine',rate:'toss',inc:'Collins (R) vs Platner (D)',note:'Only GOP seat in a state Harris won. The Democrats\u2019 top flip target.'},
+  NC:{held:'R',name:'North Carolina',rate:'lean-d',inc:'Open (Tillis ret.) \u2014 Cooper (D) vs Whatley (R)',note:'Moved Toss-up \u2192 Lean Democrat in June as Cooper led polling.'},
+  GA:{held:'D',name:'Georgia',rate:'lean-d',inc:'Ossoff (D)',note:'GOP primary chaos; Ossoff stockpiling cash. Lean Democrat.'},
+  OH:{held:'R',name:'Ohio',rate:'toss',inc:'Husted (R, appt.) vs Brown (D)',note:'Special election for Vance\u2019s old seat. Brown statistically tied.'},
+  IA:{held:'R',name:'Iowa',rate:'lean-r',inc:'Open (Ernst ret.) \u2014 Hinson (R) vs Turek (D)',note:'Shifted Likely \u2192 Lean Republican as the field firmed up.'},
+  MI:{held:'D',name:'Michigan',rate:'lean-d',inc:'Open (Peters ret.)',note:'Trump won the state narrowly in 2024; Democrats favored to hold.'},
+  NE:{held:'R',name:'Nebraska',rate:'ind',inc:'Ricketts (R) vs Osborn (Ind)',note:'Independent Dan Osborn making it competitive in a red state.'},
+  MT:{held:'R',name:'Montana',rate:'safe-r',inc:'Open (Daines ret.)',note:'An independent bid is watched, but the seat leans solidly Republican.'},
+  TX:{held:'R',name:'Texas',rate:'lean-r',inc:'Open (Cornyn lost primary) \u2014 Paxton (R) vs Talarico (D)',note:'Paxton primary win gave Democrats a longer-shot opening. Lean R.'},
+  // --- Safe Democratic seats up ---
+  NH:{held:'D',name:'New Hampshire',rate:'safe-d',inc:'Open (Shaheen ret.)'},
+  MN:{held:'D',name:'Minnesota',rate:'safe-d',inc:'Open (Smith ret.)'},
+  VA:{held:'D',name:'Virginia',rate:'safe-d',inc:'Warner (D)'},
+  NJ:{held:'D',name:'New Jersey',rate:'safe-d',inc:'Booker (D)'},
+  NM:{held:'D',name:'New Mexico',rate:'safe-d',inc:'Luj\u00e1n (D)'},
+  IL:{held:'D',name:'Illinois',rate:'safe-d',inc:'Open (Durbin ret.)'},
+  CO:{held:'D',name:'Colorado',rate:'safe-d',inc:'Hickenlooper (D)'},
+  DE:{held:'D',name:'Delaware',rate:'safe-d',inc:'Coons (D)'},
+  MA:{held:'D',name:'Massachusetts',rate:'safe-d',inc:'Markey (D)'},
+  RI:{held:'D',name:'Rhode Island',rate:'safe-d',inc:'Reed (D)'},
+  OR:{held:'D',name:'Oregon',rate:'safe-d',inc:'Merkley (D)'},
+  // --- Safe Republican seats up ---
+  AL:{held:'R',name:'Alabama',rate:'safe-r',inc:'Open (Tuberville \u2192 gov.)'},
+  AR:{held:'R',name:'Arkansas',rate:'safe-r',inc:'Cotton (R)'},
+  ID:{held:'R',name:'Idaho',rate:'safe-r',inc:'Risch (R)'},
+  KS:{held:'R',name:'Kansas',rate:'safe-r',inc:'Marshall (R)'},
+  KY:{held:'R',name:'Kentucky',rate:'safe-r',inc:'Open (McConnell ret.)'},
+  LA:{held:'R',name:'Louisiana',rate:'safe-r',inc:'Open (Cassidy lost primary)'},
+  MS:{held:'R',name:'Mississippi',rate:'safe-r',inc:'Hyde-Smith (R)'},
+  OK:{held:'R',name:'Oklahoma',rate:'safe-r',inc:'Two seats up (Mullin + special)'},
+  SC:{held:'R',name:'South Carolina',rate:'safe-r',inc:'Graham (R)'},
+  SD:{held:'R',name:'South Dakota',rate:'safe-r',inc:'Rounds (R)'},
+  TN:{held:'R',name:'Tennessee',rate:'safe-r',inc:'Hagerty (R)'},
+  WV:{held:'R',name:'West Virginia',rate:'safe-r',inc:'Capito (R)'},
+  WY:{held:'R',name:'Wyoming',rate:'safe-r',inc:'Open (Lummis... ) '},
+  FL:{held:'R',name:'Florida',rate:'safe-r',inc:'Moody (R) special + Scott (R)'}
+};
+// States not listed have no Senate race in 2026.
+
+const WATCH = [
+  ['Maine','Republican','Toss-up'],
+  ['Ohio','Republican','Toss-up'],
+  ['North Carolina','Republican','Lean D (GOP-held)'],
+  ['Georgia','Democratic','Lean D (must hold)']
+];
+
+/* ---------------- TALLY BARS ---------------- */
+function renderBar(el, segs){
+  el.innerHTML='';
+  segs.forEach(s=>{
+    const d=document.createElement('div');
+    d.className='seg '+s.c;
+    d.style.width=s.w+'%';
+    d.textContent=s.t||'';
+    el.appendChild(d);
+  });
+  const line=document.createElement('div'); line.className='majority-line';
+  const flag=document.createElement('div'); flag.className='majority-flag'; flag.textContent='51 \u2192 majority';
+  el.appendChild(line); el.appendChild(flag);
+}
+
+// Senate today: D/I 47, R 53
+function senNow(){
+  renderBar(document.getElementById('sen-bar'),[
+    {c:'d',w:45,t:'45 D'},{c:'i',w:2,t:'2 I'},{c:'r',w:53,t:'53 R'}
+  ]);
+  document.getElementById('sen-d-lab').textContent='Democrats & Independents 47';
+  document.getElementById('sen-r-lab').textContent='53 Republicans';
+  document.getElementById('sen-cap').innerHTML='Republicans hold a 53\u201347 majority. Two independents (King, Sanders) caucus with Democrats.';
+}
+// Senate forecast: consensus ~ D/I 47, R 50, Toss 3
+function senFc(){
+  renderBar(document.getElementById('sen-bar'),[
+    {c:'d',w:45,t:'45 D'},{c:'i',w:2,t:'2 I'},{c:'t',w:3,t:'3 ?'},{c:'r',w:50,t:'50 R'}
+  ]);
+  document.getElementById('sen-d-lab').textContent='Democrats & Independents 47';
+  document.getElementById('sen-r-lab').textContent='50 Republicans · 3 toss-up';
+  document.getElementById('sen-cap').innerHTML='Consensus forecast: a likely 1\u20133 seat Democratic gain \u2014 short of the four needed. Republicans remain narrow favorites to keep the Senate, with three seats too close to call.';
+}
+// House today: R 218, D 214 (+ vacancies)
+function houNow(){
+  renderBar(document.getElementById('hou-bar'),[
+    {c:'d',w:49.2,t:'214 D'},{c:'r',w:50.1,t:'218 R'},{c:'v',w:0.7,t:''}
+  ]);
+}
+houNow();
+
+/* ---------------- SENATE MAP ---------------- */
+/* Simplified tile/grid US map: each state is a square positioned on a grid.
+   col,row place the tile. This keeps small states visible (Nextdoor / mobile friendly). */
+const GRID = {
+  AK:[0,0], ME:[10,0],
+  WI:[5,1], VT:[9,1], NH:[10,1],
+  WA:[0,2], ID:[1,2], MT:[2,2], ND:[3,2], MN:[4,2], IL:[5,2], MI:[6,2], NY:[8,2], MA:[9,2], RI:[10,2],
+  OR:[0,3], NV:[1,3], WY:[2,3], SD:[3,3], IA:[4,3], IN:[5,3], OH:[6,3], PA:[7,3], NJ:[8,3], CT:[9,3],
+  CA:[0,4], UT:[1,4], CO:[2,4], NE:[3,4], MO:[4,4], KY:[5,4], WV:[6,4], VA:[7,4], MD:[8,4], DE:[9,4],
+  AZ:[1,5], NM:[2,5], KS:[3,5], AR:[4,5], TN:[5,5], NC:[6,5], SC:[7,5], DC:[8,5],
+  OK:[3,6], LA:[4,6], MS:[5,6], AL:[6,6], GA:[7,6],
+  HI:[0,7], TX:[3,7], FL:[8,7]
+};
+const TILE=40, GAP=5, COLS=11, ROWS=8;
+const W = COLS*(TILE+GAP)+GAP;
+const H = ROWS*(TILE+GAP)+GAP;
+
+function fillClass(view, st){
+  const code = st;
+  const d = SEN[code];
+  if(!d) return 'f-none';
+  if(view==='now') return d.held==='D' ? 'f-dem' : 'f-rep';
+  // forecast view
+  switch(d.rate){
+    case 'safe-d': case 'lean-d': return 'f-dem';
+    case 'safe-r': case 'lean-r': return 'f-rep';
+    case 'toss': return 'f-toss';
+    case 'ind': return 'f-ind';
+    default: return d.held==='D'?'f-dem':'f-rep';
+  }
+}
+
+let senView='now';
+function buildSenMap(){
+  const wrap=document.getElementById('sen-map');
+  let svg=`<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="US Senate races 2026 grid map">`;
+  for(const [code,[c,r]] of Object.entries(GRID)){
+    const x=GAP+c*(TILE+GAP), y=GAP+r*(TILE+GAP);
+    const fc=fillClass(senView,code);
+    const dark = (fc==='f-toss')?' dark':'';
+    const inPlay = SEN[code] && ['toss','ind','lean-d','lean-r'].includes(SEN[code].rate);
+    svg+=`<g class="tile" data-code="${code}">`;
+    svg+=`<rect class="st ${fc}" x="${x}" y="${y}" width="${TILE}" height="${TILE}" rx="3"
+            tabindex="0" role="button" aria-label="${code}${SEN[code]?', '+SEN[code].name:''}"></rect>`;
+    svg+=`<text class="stlabel${dark}" x="${x+TILE/2}" y="${y+TILE/2+3}" text-anchor="middle">${code}</text>`;
+    svg+=`</g>`;
+  }
+  svg+=`</svg>`;
+  wrap.innerHTML=svg;
+
+  wrap.querySelectorAll('.tile').forEach(g=>{
+    const code=g.getAttribute('data-code');
+    const act=()=>showReadout(code);
+    g.addEventListener('click',act);
+    g.querySelector('rect').addEventListener('keydown',e=>{
+      if(e.key==='Enter'||e.key===' '){e.preventDefault();act();}
+    });
+  });
+}
+
+const RATE_LABEL = {
+  'toss':['Toss-up','toss'], 'ind':['Independent in play','ind'],
+  'lean-d':['Lean Democrat','dem'], 'lean-r':['Lean Republican','rep'],
+  'safe-d':['Safe Democrat','dem'], 'safe-r':['Safe Republican','rep']
+};
+
+function showReadout(code){
+  const el=document.getElementById('sen-readout');
+  const d=SEN[code];
+  if(!d){
+    el.innerHTML=`<p class="ro-state">${codeName(code)}</p>
+      <p class="ro-meta">No U.S. Senate race in 2026</p>
+      <p class="ro-body ro-empty">This seat isn\u2019t on the ballot this cycle.</p>`;
+    return;
+  }
+  const heldPill = d.held==='D'
+    ? '<span class="pill dem">Currently Democratic</span>'
+    : '<span class="pill rep">Currently Republican</span>';
+  const [rlab,rcls]=RATE_LABEL[d.rate]||['',''];
+  const ratePill = rlab?`<span class="pill ${rcls}">2027 forecast: ${rlab}</span>`:'';
+  el.innerHTML=`<p class="ro-state">${d.name}</p>
+    <p class="ro-meta">${heldPill} &nbsp; ${ratePill}</p>
+    <p class="ro-body"><strong>${d.inc}</strong>${d.note?' &mdash; '+d.note:''}</p>`;
+}
+function codeName(c){
+  const names={DC:'District of Columbia'};
+  return names[c]||c;
+}
+
+/* watch table */
+(function(){
+  const tb=document.getElementById('watch-body');
+  WATCH.forEach(([race,held,rate])=>{
+    tb.insertAdjacentHTML('beforeend',
+      `<tr><td>${race}</td><td>${held}</td><td class="rate">${rate}</td></tr>`);
+  });
+})();
+
+/* toggle */
+document.getElementById('sen-toggle').addEventListener('click',e=>{
+  const b=e.target.closest('button'); if(!b)return;
+  document.querySelectorAll('#sen-toggle button').forEach(x=>x.classList.remove('active'));
+  b.classList.add('active');
+  senView=b.dataset.view;
+  if(senView==='now'){senNow();} else {senFc();}
+  buildSenMap();
+});
+
+/* init */
+senNow();
+buildSenMap();
+</script>
+</body>
+</html>
