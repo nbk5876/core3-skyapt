@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WordPress Troubleshooting Log — Dave Stripe Investigation</title>
+<meta property="og:title" content="WordPress Troubleshooting Log — Dave Stripe Investigation" />
+<meta property="og:description" content="A running log of AI-assisted troubleshooting sessions for Dave's Stripe/WordPress rendering bug." />
+<meta name="twitter:card" content="summary" />
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=Barlow+Condensed:wght@400;600;700&display=swap" rel="stylesheet">
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-291QNWCB1H"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-291QNWCB1H');
+</script>
+
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'Source Serif 4', Georgia, serif;
+  background: #f4f6f9;
+  color: #111827;
+  font-size: 19px;
+  font-weight: 400;
+  line-height: 1.75;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* TOP BAR */
+.top-bar {
+  background: #ffffff;
+  color: #111827;
+  font-size: 13px;
+  padding: 10px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: 'Barlow Condensed', sans-serif;
+  letter-spacing: 0.5px;
+  border-bottom: 1px solid #e2e8f0;
+}
+.top-bar .category {
+  color: #0866ff;
+  text-transform: uppercase;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+}
+
+/* HERO */
+.hero {
+  background: #ffffff;
+  padding: 40px 20px 36px;
+  border-bottom: 1px solid #e2e8f0;
+}
+.hero-inner {
+  max-width: 780px;
+  margin: 0 auto;
+}
+.hero-kicker {
+  color: #0866ff;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  font-weight: 700;
+  margin-bottom: 14px;
+  font-family: 'Barlow Condensed', sans-serif;
+}
+.hero h1 {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: clamp(26px, 5vw, 40px);
+  font-weight: 900;
+  color: #0d1b2a;
+  line-height: 1.2;
+  margin-bottom: 16px;
+}
+.hero-sub {
+  font-size: 18px;
+  color: #374151;
+  line-height: 1.6;
+  margin-bottom: 20px;
+  max-width: 640px;
+}
+.source-doc-box {
+  background: #f0f4ff;
+  border: 1px solid #c7d7ff;
+  border-left: 4px solid #0866ff;
+  border-radius: 6px;
+  padding: 14px 18px;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 14px;
+  color: #374151;
+  margin-top: 18px;
+}
+.source-doc-box .label {
+  font-weight: 700;
+  color: #0866ff;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-size: 11px;
+  margin-bottom: 6px;
+}
+.source-doc-box code {
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 13px;
+  color: #0d1b2a;
+  word-break: break-all;
+  display: block;
+  margin-top: 4px;
+}
+
+/* ARTICLE BODY */
+.article-body {
+  max-width: 780px;
+  margin: 0 auto;
+  padding: 40px 20px 60px;
+}
+
+/* SECTION */
+.section {
+  margin-bottom: 48px;
+  opacity: 1;
+}
+.section-kicker {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2.5px;
+  color: #0866ff;
+  margin-bottom: 8px;
+}
+.section h2 {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: clamp(21px, 3.5vw, 28px);
+  font-weight: 700;
+  color: #0d1b2a;
+  line-height: 1.25;
+  margin-bottom: 18px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid #e2e8f0;
+}
+.section p {
+  margin-bottom: 18px;
+  color: #111827;
+}
+
+/* LOG ENTRY */
+.log-entry {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 24px 24px 20px;
+  margin-bottom: 28px;
+}
+.log-entry-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 14px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #f0f0f0;
+}
+.log-entry-date {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  color: #6b7280;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+.log-badge {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  padding: 3px 8px;
+  border-radius: 4px;
+}
+.badge-claude {
+  background: #ede9fe;
+  color: #6d28d9;
+}
+.badge-chatgpt {
+  background: #d1fae5;
+  color: #065f46;
+}
+.badge-finding {
+  background: #fef3c7;
+  color: #92400e;
+}
+.badge-open {
+  background: #fee2e2;
+  color: #991b1b;
+}
+.badge-resolved {
+  background: #d1fae5;
+  color: #065f46;
+}
+.log-entry-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 18px;
+  font-weight: 700;
+  color: #0d1b2a;
+  margin-bottom: 10px;
+}
+.log-entry p {
+  font-size: 17px;
+  color: #374151;
+  margin-bottom: 12px;
+}
+.log-entry p:last-child {
+  margin-bottom: 0;
+}
+
+/* CALLOUT BOXES */
+.callout {
+  border-radius: 6px;
+  padding: 18px 20px;
+  margin: 24px 0;
+  font-size: 17px;
+}
+.callout-warning {
+  background: #fff5f5;
+  border-left: 4px solid #c0392b;
+  color: #7f1d1d;
+}
+.callout-info {
+  background: #eff6ff;
+  border-left: 4px solid #0866ff;
+  color: #1e3a5f;
+}
+.callout-gold {
+  background: #fffbeb;
+  border-left: 4px solid #d97706;
+  color: #78350f;
+}
+.callout .callout-label {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-bottom: 8px;
+  opacity: 0.75;
+}
+
+/* STATUS BAR */
+.status-bar {
+  background: #0d1b2a;
+  color: #e2e8f0;
+  border-radius: 8px;
+  padding: 18px 22px;
+  margin-bottom: 32px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  font-family: 'Barlow Condensed', sans-serif;
+}
+.status-item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.status-label {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: #94a3b8;
+}
+.status-value {
+  font-size: 17px;
+  font-weight: 600;
+  color: #f1f5f9;
+}
+.status-value.open { color: #fbbf24; }
+.status-value.resolved { color: #34d399; }
+
+/* PULL QUOTE */
+.pull-quote {
+  border-left: 4px solid #0866ff;
+  padding: 14px 20px;
+  margin: 24px 0;
+  font-family: 'Playfair Display', serif;
+  font-size: 20px;
+  font-style: italic;
+  color: #0d1b2a;
+  background: #f8faff;
+  border-radius: 0 6px 6px 0;
+}
+
+/* FOOTER */
+.footer {
+  background: #0d1b2a;
+  color: #94a3b8;
+  padding: 32px 20px;
+  text-align: center;
+  font-size: 14px;
+  font-family: 'Barlow Condensed', sans-serif;
+  letter-spacing: 0.5px;
+}
+.footer a {
+  color: #60a5fa;
+  text-decoration: none;
+}
+.footer a:hover {
+  text-decoration: underline;
+}
+.footer .attribution {
+  margin-top: 10px;
+  font-size: 12px;
+  color: #64748b;
+}
+
+/* SCROLL ANIMATION — progressive enhancement only */
+@media (prefers-reduced-motion: no-preference) {
+  .fade-up {
+    opacity: 1;
+    transform: none;
+    transition: opacity 0.5s ease, transform 0.5s ease;
+  }
+  .fade-up.pre-animate {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+}
+
+@media (max-width: 600px) {
+  .article-body { padding: 28px 16px 48px; }
+  .hero { padding: 28px 16px 24px; }
+  .log-entry { padding: 18px 16px; }
+  .status-bar { flex-direction: column; gap: 14px; }
+}
+</style>
+</head>
+<body>
+
+<!-- TOP BAR -->
+<div class="top-bar">
+  <span id="page-date">June 23, 2025</span>
+  <span class="category">Troubleshooting Log</span>
+</div>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-inner">
+    <h1>Dave: Stripe / WordPress Rendering Bug</h1>
+    <p class="hero-sub">A log of AI-assisted troubleshooting sessions — interactions with Claude and ChatGPT — working to diagnose and resolve Dave's WordPress rendering issue.</p>
+  </div>
+</div>
+
+<!-- ARTICLE BODY -->
+<div class="article-body">
+
+
+  <!-- SECTION: BACKGROUND -->
+  <div class="section fade-up" id="background">
+    <div class="section-kicker">Background</div>
+    <h2>The Problem Description</h2>
+    <p>
+
+    <p>Dave provided this problem description:</p>  
+
+    Now I've been working on fixing the shopping cart for my digital products. I've been using 'access stripe payments' plugin. But there's a problem: if someone uses auto-fill to fill in credit card info, the ZIP/postal code field is off screen to the right. (If you fill it in manually, the ZIP field comes into view. But I need it to work for everyone.) If it were possible to stack the fields vertically, that would solve it, but I don't see a way to do that. Also, stripe now puts their own 'auto-fill' button in the field, which I'd like to remove. I've looked into it, but haven't found a way to do that. I did try making some products directly in my stripe account. I tried to add the fulfillment url, but it didn't seem to work. I'm tired of trying to find a dependable solution. I want a free, light weight solution, so want to avoid woo commerce.   
+
+    </p>
+
+  </div>
+
+  <!-- SECTION: LOG -->
+  <div class="section fade-up" id="log">
+    <div class="section-kicker">Session Log</div>
+    <h2>Messaging and Troubleshooting Sessions</h2>
+
+    <!-- ENTRY 1 -->
+    <div class="log-entry">
+      <div class="log-entry-header">
+        <span class="log-entry-date">June 23, 2025</span>
+        <span class="log-badge badge-claude">ChatGPT</span>
+        <span class="log-badge badge-open">Open</span>
+      </div>
+      <div class="log-entry-title">Message 1 - ChatGPT Response</div>
+      <p>
+
+Technical Analysis of Dave's Stripe/WordPress Issue<br><br>
+
+The evidence suggests this is probably not a core WordPress problem. Instead, it appears to be a frontend rendering problem involving the interaction between Stripe's embedded payment components, the Access Stripe Payments plugin, Elementor's responsive layout system, and mobile browser autofill behavior.<br><br>
+
+The most significant clue is that manual entry works while autofill does not. This indicates that the payment process itself is functioning. The failure appears to be related to the visual layout and resizing of fields when Stripe populates the form automatically.<br><br>
+
+Because Stripe payment elements are frequently rendered inside secure iframes, normal CSS fixes may not be sufficient. The problem could originate either within Stripe's embedded component or in the container that surrounds it.<br><br>
+
+
+      </p>
+
+
+    </div>
+
+    <!-- PLACEHOLDER ENTRY -->
+    <div class="callout callout-gold">
+      <div class="callout-label">Next Entry</div>
+      next troubleshooting session here
+    </div>
+
+  </div>
+
+  <!-- SECTION: CONTEXT -->
+  <div class="section fade-up" id="context">
+    <div class="section-kicker">Reference</div>
+    <h2>Known Environment Details</h2>
+    <p>As diagnostic sessions surface details about Dave's WordPress environment — plugin versions, theme, PHP version, hosting provider, Stripe plugin variant, and any error messages — those details will be recorded here as a growing reference panel for future sessions.</p>
+
+    <div class="callout callout-warning">
+      <div class="callout-label">To Be Filled In</div>
+      WordPress version    </div>
+
+  </div>
+
+</div><!-- /article-body -->
+
+<!-- FOOTER -->
+<div class="footer">
+  <a href="">← All AI News Stories</a>
+  <div class="attribution">Tony — ideas and first draft. Claude — final draft.</div>
+</div>
+
+<script>
+// Set today's date in top bar
+(function() {
+  const d = new Date();
+  const opts = { year: 'numeric', month: 'long', day: 'numeric' };
+  const el = document.getElementById('page-date');
+  if (el) el.textContent = d.toLocaleDateString('en-US', opts);
+})();
+
+// Scroll fade — progressive enhancement only
+(function() {
+  const sections = document.querySelectorAll('.fade-up');
+  if (!('IntersectionObserver' in window)) return;
+  sections.forEach(el => el.classList.add('pre-animate'));
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.remove('pre-animate');
+        obs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.08 });
+  sections.forEach(el => obs.observe(el));
+})();
+</script>
+
+</body>
+</html>
