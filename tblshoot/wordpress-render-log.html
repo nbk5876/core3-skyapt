@@ -3,9 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>WordPress Troubleshooting Log — Dave Stripe Investigation</title>
-<meta property="og:title" content="WordPress Troubleshooting Log — Dave Stripe Investigation" />
-<meta property="og:description" content="A running log of AI-assisted troubleshooting sessions for Dave's Stripe/WordPress rendering bug." />
+<title>WordPress Troubleshooting Log — Jeff Stripe Investigation</title>
+<meta property="og:title" content="WordPress Troubleshooting Log — Jeff Stripe Investigation" />
+<meta property="og:description" content="A running log of AI-assisted troubleshooting sessions for Jeff's Stripe/WordPress rendering bug." />
 <meta name="twitter:card" content="summary" />
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=Barlow+Condensed:wght@400;600;700&display=swap" rel="stylesheet">
 
@@ -351,8 +351,8 @@ body {
 <!-- HERO -->
 <div class="hero">
   <div class="hero-inner">
-    <h1>Dave: Stripe / WordPress Rendering Bug</h1>
-    <p class="hero-sub">A log of AI-assisted troubleshooting sessions — interactions with Claude and ChatGPT — working to diagnose and resolve Dave's WordPress rendering issue.</p>
+    <h1>Jeff: Stripe / WordPress Rendering Bug</h1>
+    <p class="hero-sub">A log of AI-assisted troubleshooting sessions — interactions with Claude and ChatGPT — working to diagnose and resolve Jeff's WordPress rendering issue.</p>
   </div>
 </div>
 
@@ -366,7 +366,7 @@ body {
     <h2>The Problem Description</h2>
     <p>
 
-    <p>Dave provided this problem description:</p>  
+    <p>Jeff provided this problem description:</p>  
 
     Now I've been working on fixing the shopping cart for my digital products. I've been using 'access stripe payments' plugin. But there's a problem: if someone uses auto-fill to fill in credit card info, the ZIP/postal code field is off screen to the right. (If you fill it in manually, the ZIP field comes into view. But I need it to work for everyone.) If it were possible to stack the fields vertically, that would solve it, but I don't see a way to do that. Also, stripe now puts their own 'auto-fill' button in the field, which I'd like to remove. I've looked into it, but haven't found a way to do that. I did try making some products directly in my stripe account. I tried to add the fulfillment url, but it didn't seem to work. I'm tired of trying to find a dependable solution. I want a free, light weight solution, so want to avoid woo commerce.   
 
@@ -389,7 +389,7 @@ body {
       <div class="log-entry-title">Message 1 - ChatGPT Response</div>
       <p>
 
-Technical Analysis of Dave's Stripe/WordPress Issue<br><br>
+Technical Analysis of Jeff's Stripe/WordPress Issue<br><br>
 
 The evidence suggests this is probably not a core WordPress problem. Instead, it appears to be a frontend rendering problem involving the interaction between Stripe's embedded payment components, the Access Stripe Payments plugin, Elementor's responsive layout system, and mobile browser autofill behavior.<br><br>
 
@@ -412,13 +412,13 @@ Because Stripe payment elements are frequently rendered inside secure iframes, n
       </div>
       <div class="log-entry-title">Message 2 — Claude Analysis: Three Separate Problems</div>
 
-      <p>Dave's situation actually involves three distinct problems that are easy to conflate but require separate solutions. Addressing them one at a time is the clearest path forward.</p>
+      <p>Jeff's situation actually involves three distinct problems that are easy to conflate but require separate solutions. Addressing them one at a time is the clearest path forward.</p>
 
       <p><strong>Problem 1: ZIP field goes off-screen during autofill.</strong> This is a known layout issue with Stripe's Card Element — the component that renders card number, expiry, CVC, and ZIP as a single horizontal row inside an iframe. When a browser autofill populates the fields rapidly, the iframe container doesn't always resize in time, pushing the ZIP field out of view to the right. The plugin (Accept Stripe Payments, by s-plugins.com) has acknowledged this behavior in its changelog — a recent update noted "better handling for zip/postal code." The first step is to confirm the plugin is fully up to date. If it is, the most reliable fix available without custom coding is to switch the Stripe integration from the legacy Card Element to Stripe's newer Payment Element, which stacks fields vertically by default and handles autofill far more gracefully. Whether the plugin supports this switch depends on its version — worth checking in its Advanced Settings.</p>
 
       <p><strong>Problem 2: Stripe's "Autofill with Link" button appearing in the card field.</strong> This is Stripe's Link feature — a wallet service Stripe began enabling by default for all merchants. It is not a WordPress or plugin setting; it lives in the Stripe account itself. To remove it: log in to the Stripe Dashboard, go to Settings → Payment Methods, find the Link section, and turn it off. Once disabled at the account level, the autofill button disappears from the checkout form. There is also a CSS class that can be used as a fallback: <code>.p-LinkAutofillPrompt { display: none !important; }</code>, added via the WordPress Customizer or a custom CSS plugin — though the Dashboard toggle is the clean solution.</p>
 
-      <p><strong>Problem 3: Fulfillment URL not working when products are set up directly in Stripe.</strong> This is expected behavior, not a configuration error. The Accept Stripe Payments plugin manages product creation, payment processing, and post-purchase fulfillment entirely within WordPress. When Dave created products directly in the Stripe Dashboard and tried to attach a fulfillment URL there, he was working outside the plugin's workflow — Stripe's native product setup has no mechanism to trigger a WordPress download URL. The correct workflow is to create the product inside the WordPress plugin (not in Stripe), upload or link the digital file there, and let the plugin generate and email the download link automatically after payment.</p>
+      <p><strong>Problem 3: Fulfillment URL not working when products are set up directly in Stripe.</strong> This is expected behavior, not a configuration error. The Accept Stripe Payments plugin manages product creation, payment processing, and post-purchase fulfillment entirely within WordPress. When Jeff created products directly in the Stripe Dashboard and tried to attach a fulfillment URL there, he was working outside the plugin's workflow — Stripe's native product setup has no mechanism to trigger a WordPress download URL. The correct workflow is to create the product inside the WordPress plugin (not in Stripe), upload or link the digital file there, and let the plugin generate and email the download link automatically after payment.</p>
 
       <p><strong>Recommended next steps:</strong> (1) Disable Link in the Stripe Dashboard — a two-minute fix with immediate results. (2) Update the Accept Stripe Payments plugin to the latest version. (3) Re-create any digital products inside the WordPress plugin rather than in Stripe directly. (4) Test the ZIP autofill issue again after the plugin update — if it persists, explore whether the plugin's Advanced Settings offer a Payment Element option.</p>
     </div>
@@ -429,9 +429,9 @@ Because Stripe payment elements are frequently rendered inside secure iframes, n
         <span class="log-entry-date">June 23, 2025</span>
         <span class="log-badge badge-finding">Environment</span>
       </div>
-      <div class="log-entry-title">Message 3 — Dave's Environment (via Nextdoor)</div>
+      <div class="log-entry-title">Message 3 — Jeff's Environment (via Nextdoor)</div>
 
-      <p>Dave replied on Nextdoor with the following environment details:</p>
+      <p>Jeff replied on Nextdoor with the following environment details:</p>
 
       <p><em>"It's at hostinger.com. I haven't updated to WordPress 7 but it's at the latest version 6 and I have the latest or almost the latest PHP version. I'm also using the latest version of Elementor Pro page builder."</em></p>
 
